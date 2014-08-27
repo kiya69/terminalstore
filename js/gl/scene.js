@@ -47,11 +47,6 @@ Demo.Scene.prototype = {
 
     this.listeners();
   },
-
-  startGame: function() {
-
-  },
-
   listeners: function() {
     var that = this;
     window.addEventListener('resize', that.onWindowResize, false);

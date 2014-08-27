@@ -7,6 +7,7 @@ app.controller('controller', function($scope, three) {
   };
 
   three.init(params);
+  three.load('/data/ionic/ionic.obj', '/data/ionic/ionic.mtl');
 });
 
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {

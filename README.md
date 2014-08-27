@@ -7,3 +7,4 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Testing
 - Fallbacks
 - Hash for highlighting
+- Progress loader
