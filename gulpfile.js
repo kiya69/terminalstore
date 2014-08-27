@@ -30,7 +30,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('upload', function() {
-  run('aws s3 cp build s3://labs.floored.com/fallback --recursive').exec();
+  run('aws s3 cp build s3://labs.floored.com/buildings --recursive').exec();
 });
 
 gulp.task('publish', ['build', 'upload']);

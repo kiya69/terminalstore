@@ -1,15 +1,29 @@
-<html>
+<html ng-app='app'>
   <head>
-    <script src="src/config.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js"></script>
+    <!-- Configuration -->
+    <script src='js/config.js'></script>
 
-    <script src="src/lib/MTLLoader.js"></script>
-    <script src="src/lib/OBJMTLLoader.js"></script>
+    <!-- Libraries -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js'></script>
+
+    <script src='js/lib/MTLLoader.js'></script>
+    <script src='js/lib/OBJMTLLoader.js'></script>
+
+    <!-- Angular components -->
+    <script src='js/ng/app.js'></script>
+    <script src='js/ng/controllers.js'></script>
+    <script src='js/ng/services.js'></script>
+
+    <!-- Three -->
+    <script src='js/gl/scene.js'></script>
   </head>
 
-  <body>
-
+  <body ng-controller='controller'>
+    <!-- <ng-include src=''partials/user-prompt.html''></ng-include> -->
+    <canvas id='main'></canvas>
   </body>
 </html>

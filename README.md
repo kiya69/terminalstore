@@ -1,4 +1,9 @@
 buildings.js
 ============
 
-https://github.com/cubicleDowns/webgl-code-samples/tree/master/ng-3D-TTT
+http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
+
+# TODO
+- Testing
+- Fallbacks
+- Hash for highlighting
