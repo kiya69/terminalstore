@@ -1,0 +1,22 @@
+{
+  "author": "Daniel Suo",
+  "name": "buildings.js",
+  "version": "0.0.1",
+  "homepage": "labs.floored.com",
+  "licenses": {
+    "type": "MIT"
+  },
+  "main": "src/main.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:danielsuo/buildings.js.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.1",
+    "gulp-connect": "^2.0.5",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-run": "^1.6.2",
+    "requirejs": "^2.1.14"
+  }
+}
