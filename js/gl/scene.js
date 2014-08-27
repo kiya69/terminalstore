@@ -27,7 +27,6 @@ Demo.Scene = function(params) {
 Demo.Scene.prototype = {
 
   init: function() {
-
     var params = {
       context: this
     };
@@ -39,28 +38,29 @@ Demo.Scene.prototype = {
       antialias: true
     });
 
-    var aspect = this.jqContainer.width() / this.jqContainer.height();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+
+    var aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(60, aspect, 1, 100000);
     this.camera.position.z = 100;
     // this.setup = new Demo.Scene.Setup(params);
-    // this.cameras = new Demo.Scene.Cameras(params);
     // this.controls = new THREE.OrbitControls(this.cameras.liveCam, this.container);
 
     this.listeners();
-  },
-  listeners: function() {
-    var that = this;
-    window.addEventListener('resize', that.onWindowResize, false);
+
+    this.controls = new THREE.OrbitControls(this.camera, this.container);
   },
 
-  /**
-   * Resizes the camera when document is resized.
-   * @return {[type]}
-   */
-  onWindowResize: function() {
-    // this.liveCam.aspect = this.jqContainer.width() / this.jqContainer.height();
-    // this.liveCam.updateProjectionMatrix();
-    this.renderer.setSize(this.jqContainer.width(), this.jqContainer.height());
+  listeners: function() {
+    var that = this;
+    $(window).resize(that.onWindowResize.bind(that));
   },
+
+  onWindowResize: function() {
+    var aspect = window.innerWidth / window.innerHeight;
+    this.camera.aspect = aspect;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
+  }
 
 };
