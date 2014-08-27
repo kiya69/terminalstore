@@ -41,6 +41,7 @@ Demo.Scene.prototype = {
 
     var aspect = this.jqContainer.width() / this.jqContainer.height();
     this.camera = new THREE.PerspectiveCamera(60, aspect, 1, 100000);
+    this.camera.position.z = 100;
     // this.setup = new Demo.Scene.Setup(params);
     // this.cameras = new Demo.Scene.Cameras(params);
     // this.controls = new THREE.OrbitControls(this.cameras.liveCam, this.container);

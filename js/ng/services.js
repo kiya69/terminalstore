@@ -21,10 +21,16 @@ app.factory('three', function($http, $log, $rootScope) {
 
   function load(url, mtlurl, options) {
     console.log('loading');
-    var loader = new THREE.OBJMTLLoader();
-    loader.load(url, mtlurl, function(object) {
+    var loader = new THREE.UTF8Loader();
+    loader.load(url, function(object) {
       console.log(object);
-      // demo.scene.add(object);
+      object.traverse(function(child) {
+        if (child instanceof THREE.Mesh) {
+          child.material.emissive.setRGB(1, 1, 1);
+        }
+      });
+
+      demo.scene.add(object);
     });
   }
 
