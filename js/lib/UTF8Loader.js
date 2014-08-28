@@ -582,6 +582,11 @@ THREE.UTF8Loader.prototype.downloadMesh = function(path, name, meshEntry, decode
 
   };
 
+  var fileStats = new FileStats();
+  fileStats.getSize(path, function(x) {
+    radio('progress').broadcast(path, parseInt(x));
+  });
+
   getHttpRequest(path, function(req, e) {
 
     if (req.status === 200 || req.status === 0) {
@@ -772,7 +777,9 @@ function getJsonRequest(url, onjson) {
 
   getHttpRequest(url,
     function(e) {
-      onjson(JSON.parse(e.responseText));
+      var data = JSON.parse(e.responseText);
+      onjson(data);
+      radio('progress.total').broadcast(data.size);
     },
     function() {});
 

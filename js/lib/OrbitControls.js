@@ -28,11 +28,11 @@ THREE.OrbitControls = function(object, domElement) {
   this.autoRotate = false;
   this.autoRotateSpeed = 2.0; // 30 seconds per round when fps is 60
 
-  this.minPolarAngle = 0; // radians
-  this.maxPolarAngle = Math.PI; // radians
+  this.minPolarAngle = config.orbitAngle.min; // radians
+  this.maxPolarAngle = config.orbitAngle.max; // radians
 
-  this.minDistance = 0;
-  this.maxDistance = Infinity;
+  this.minDistance = config.zoomDistance.min;
+  this.maxDistance = config.zoomDistance.max;
 
   // 65 /*A*/, 83 /*S*/, 68 /*D*/
   this.keys = {

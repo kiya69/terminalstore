@@ -8,6 +8,15 @@ app.factory('three', function($http, $log, $rootScope) {
   function init(params) {
     demo = new Demo.Scene(params);
     animate();
+
+    radio('progress').subscribe(function(url, size) {
+      config.progress.current += size;
+      console.log(config.progress.current / config.progress.total);
+    });
+
+    radio('progress.total').subscribe(function(size) {
+      config.progress.total = size;
+    });
   }
 
   function animate() {

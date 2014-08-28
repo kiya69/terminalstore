@@ -38,11 +38,12 @@ Demo.Scene.prototype = {
       antialias: true
     });
 
+    this.renderer.setClearColor(new THREE.Color(config.backgroundColor), 1.0);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     var aspect = window.innerWidth / window.innerHeight;
     this.camera = new THREE.PerspectiveCamera(60, aspect, 1, 100000);
-    this.camera.position.z = 100;
+    this.camera.position.z = config.zoomDistance.init;
     // this.setup = new Demo.Scene.Setup(params);
     // this.controls = new THREE.OrbitControls(this.cameras.liveCam, this.container);
 
