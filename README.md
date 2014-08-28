@@ -7,15 +7,22 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Help text / panel
 - Info panel
 - Admin Panel
-- Load / progress loading screen
+- Loading screen
 - Save state data to URL
-- Testing
 - Screenshot (aka v1 fallback)
-- Hash for highlighting
+- Testing
 
 # Done
+- Set up angular + webgl application
+- Establish comms
+- Compress model
+- Load model + textures
+- Added pan
+- Add zoom
+- Add orbit
 - Limit Zoom
 - Limit orbit
+- Progress infrastructure
 
 # Model TODO
 - Create panel geometry as separate OBJs
