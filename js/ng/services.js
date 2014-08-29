@@ -63,9 +63,14 @@ app.factory('three', function($http, $log, $rootScope) {
     });
   }
 
+  function screenshot(filename) {
+    demo.screenshot(filename);
+  }
+
   return {
     init: init,
     load: load,
-    loadCards: loadCards
+    loadCards: loadCards,
+    screenshot: screenshot
   };
 });

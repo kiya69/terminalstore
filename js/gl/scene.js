@@ -35,7 +35,8 @@ Demo.Scene.prototype = {
     this.projector = new THREE.Projector();
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.container,
-      antialias: true
+      antialias: true,
+      preserverDrawingBuffer: true
     });
 
     this.renderer.setClearColor(new THREE.Color(config.backgroundColor), 1.0);
@@ -62,6 +63,16 @@ Demo.Scene.prototype = {
     this.camera.aspect = aspect;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+  },
+
+  screenshot: function(filename) {
+    // alert(filename)
+    this.renderer.render(this.scene, this.camera);
+    var uri = this.renderer.domElement.toDataURL('image/jpeg');
+    console.log(uri)
+    var img = uriToBlob(uri);
+    img.type = 'image/jpeg';
+    saveAs(img, filename);
   }
 
 };

@@ -8,9 +8,9 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Admin Panel
 - Loading screen
 - Save state data to URL
-- Screenshot (aka v1 fallback)
 - Testing
-- UI polish
+- Style screenshot button
+- Style instruction banner
 - Help text copy
 
 # Done
@@ -25,6 +25,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Limit orbit
 - Progress infrastructure
 - Help text / panel
+- Screenshot (aka v1 fallback)
 
 # Model TODO
 - Create panel geometry as separate OBJs
