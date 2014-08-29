@@ -1,13 +1,13 @@
 'use strict';
 
 app.controller('controller', function($scope, three) {
-  console.log(three);
   var params = {
     canvasId: 'main'
   };
 
   three.init(params);
   three.load('/data/ionic/model.js');
+  three.loadCards(config.cards.url);
 });
 
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {

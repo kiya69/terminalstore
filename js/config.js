@@ -11,5 +11,8 @@ var config = {
   },
   progress: {
     current: 0
+  },
+  cards: {
+    url: '/data/ionic/cards/cards.json'
   }
 };

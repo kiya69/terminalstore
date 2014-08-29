@@ -11,7 +11,6 @@ app.factory('three', function($http, $log, $rootScope) {
 
     radio('progress').subscribe(function(url, size) {
       config.progress.current += size;
-      console.log(config.progress.current / config.progress.total);
     });
 
     radio('progress.total').subscribe(function(size) {
@@ -30,7 +29,6 @@ app.factory('three', function($http, $log, $rootScope) {
   }
 
   function load(url, mtlurl, options) {
-    console.log('loading');
     var loader = new THREE.UTF8Loader();
     loader.load(url, function(object) {
       object.traverse(function(child) {
@@ -50,8 +48,24 @@ app.factory('three', function($http, $log, $rootScope) {
     });
   }
 
+  function loadCards(url) {
+    var loader = new THREE.OBJLoader();
+    $.getJSON(url, function(data) {
+      for (var i = 0; i < data.length; i++) {
+        loader.load(data[i], function(object) {
+          object = object.children[0];
+          object.material.emissive.setRGB(1, 1, 1);
+          object.rotation.x = -Math.PI / 2;
+          demo.cards.push(object);
+          demo.scene.add(object);
+        })
+      }
+    });
+  }
+
   return {
     init: init,
-    load: load
+    load: load,
+    loadCards: loadCards
   };
 });

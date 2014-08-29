@@ -7,8 +7,8 @@ Demo.Scene = function(params) {
 
   // rays for casting.
   this.rays = [];
-  // arrows visualizing vectors
-  this.arrows = [];
+  // Cards geometries representing units
+  this.cards = [];
 
   // an array of scene elements we're interested in colliding with.  the X's and O's.
   this.collisions = [];

@@ -4,13 +4,14 @@ buildings.js
 http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 
 # TODO
-- Help text / panel
 - Info panel
 - Admin Panel
 - Loading screen
 - Save state data to URL
 - Screenshot (aka v1 fallback)
 - Testing
+- UI polish
+- Help text copy
 
 # Done
 - Set up angular + webgl application
@@ -23,6 +24,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Limit Zoom
 - Limit orbit
 - Progress infrastructure
+- Help text / panel
 
 # Model TODO
 - Create panel geometry as separate OBJs

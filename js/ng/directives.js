@@ -1,0 +1,28 @@
+'use strict';
+
+app.directive('overlay', function() {
+  return {
+    restrict: 'E',
+    link: function(scope, element) {
+      var message = document.createElement('div');
+      message.id = 'overlay-message';
+
+      var messageText = document.createElement('p');
+      messageText.innerHTML = 'Click and drag to look. Click the left icon for highlights.<br />To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.';
+      message.appendChild(messageText);
+
+      element.append(message);
+
+      var close = document.createElement('div');
+      close.id = 'overlay-close';
+
+      element.append(close);
+
+      $('#overlay-close').click(function() {
+        $('overlay').css('visibility', function(index) {
+          return 'hidden';
+        });
+      })
+    }
+  };
+});
