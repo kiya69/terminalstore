@@ -48,9 +48,11 @@ app.factory('three', function($http, $log, $rootScope) {
     });
   }
 
-  function loadCards(url) {
+  function loadCards(url, callback) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
+      config.cards.data = data;
+      callback(data);
       for (var i = 0; i < data.length; i++) {
         loader.load(data[i], function(object) {
           object = object.children[0];

@@ -51,9 +51,19 @@ overlay a:hover {
 #screenshot-button {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 260px;
   width: 40px;
   height: 40px;
-  background-color: #000;
+  background-color: #808;
   z-index: 20;
+}
+
+panel {
+  position: absolute;
+  z-index: 15;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px;
+  background-color: #808088;
 }

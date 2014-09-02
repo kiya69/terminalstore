@@ -12,6 +12,8 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Style screenshot button
 - Style instruction banner
 - Help text copy
+- Update model
+- No WebGL
 
 # Done
 - Set up angular + webgl application

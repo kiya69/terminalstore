@@ -1,9 +1,9 @@
 var config = {
   backgroundColor: 'rgb(200, 200, 200)',
   zoomDistance: {
-    init: 120,
-    min: 60,
-    max: 200
+    init: 250,
+    min: 200,
+    max: 300
   },
   orbitAngle: {
     min: 0,

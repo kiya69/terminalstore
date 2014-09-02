@@ -7,7 +7,13 @@ app.controller('controller', function($scope, three) {
 
   three.init(params);
   three.load('/data/ionic/model.js');
-  three.loadCards(config.cards.url);
+
+  $scope.data = ['test', 'test2'];
+
+  three.loadCards(config.cards.url, function(x) {
+    $scope.data = x;
+    console.log(x)
+  });
 });
 
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {

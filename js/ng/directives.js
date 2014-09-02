@@ -39,5 +39,14 @@ app.directive('screenshot', function(three) {
         three.screenshot('screenshot.jpg');
       });
     }
-  }
+  };
+});
+
+app.directive('panel', function(three) {
+  return {
+    restrict: 'E',
+    link: function(scope, element) {
+
+    }
+  };
 });
