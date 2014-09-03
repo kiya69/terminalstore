@@ -51,16 +51,25 @@ app.factory('three', function($http, $log, $rootScope) {
   function loadCards(url, callback) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
-      config.cards.data = data;
       callback(data);
       for (var i = 0; i < data.length; i++) {
-        loader.load(data[i], function(object) {
-          object = object.children[0];
-          object.material.emissive.setRGB(1, 1, 1);
-          object.rotation.x = -Math.PI / 2;
-          demo.cards.push(object);
-          demo.scene.add(object);
-        })
+        loader.load(data[i], (function(url) {
+          return function(object) {
+            object = object.children[0];
+            object.material.emissive.setRGB(1, 1, 1);
+            object.rotation.x = -Math.PI / 2;
+
+            object.material.side = THREE.DoubleSide;
+
+            object.visible = false;
+            object.name = url;
+
+            console.log(object.name)
+
+            demo.cards.push(object);
+            demo.scene.add(object);
+          }
+        })(data[i]))
       }
     });
   }
@@ -69,10 +78,17 @@ app.factory('three', function($http, $log, $rootScope) {
     demo.screenshot(filename);
   }
 
+  function onCardClick(url) {
+    console.log(url)
+    var object = demo.scene.getObjectByName(url);
+    object.visible = !object.visible;
+  }
+
   return {
     init: init,
     load: load,
     loadCards: loadCards,
-    screenshot: screenshot
+    screenshot: screenshot,
+    onCardClick: onCardClick
   };
 });

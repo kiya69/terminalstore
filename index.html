@@ -39,7 +39,7 @@
     <screenshot></screenshot>
     <panel>
         <ul>
-            <li ng-repeat='card in data'>
+            <li ng-repeat='card in data' ng-click='onCardClick(card)'>
                 {{ card }}
             </li>
         </ul>

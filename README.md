@@ -14,6 +14,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Help text copy
 - Update model
 - No WebGL
+- Hierarchical UI by floor?
 
 # Done
 - Set up angular + webgl application

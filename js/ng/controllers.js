@@ -8,12 +8,17 @@ app.controller('controller', function($scope, three) {
   three.init(params);
   three.load('/data/ionic/model.js');
 
-  $scope.data = ['test', 'test2'];
-
   three.loadCards(config.cards.url, function(x) {
-    $scope.data = x;
-    console.log(x)
+    // $scope.data = x;
+    $scope.$apply(function() {
+      $scope.data = x;
+      config.cards.data = x;
+    });
   });
+
+  $scope.onCardClick = function(card) {
+    three.onCardClick(card);
+  }
 });
 
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {
