@@ -53,7 +53,7 @@ app.factory('three', function($http, $log, $rootScope) {
     $.getJSON(url, function(data) {
       callback(data);
       for (var i = 0; i < data.length; i++) {
-        loader.load(data[i], (function(url) {
+        loader.load(config.baseUrl + data[i], (function(url) {
           return function(object) {
             object = object.children[0];
             object.material.emissive.setRGB(1, 1, 1);

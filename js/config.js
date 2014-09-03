@@ -1,4 +1,5 @@
 var config = {
+  baseUrl: '/buildings',
   backgroundColor: 'rgb(200, 200, 200)',
   zoomDistance: {
     init: 250,
@@ -8,6 +9,9 @@ var config = {
   orbitAngle: {
     min: 0,
     max: Math.PI / 2
+  },
+  model: {
+    url: '/data/ionic/model.js'
   },
   progress: {
     current: 0

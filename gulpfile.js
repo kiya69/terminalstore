@@ -10,15 +10,10 @@ gulp.task('connect', function() {
 gulp.task('default', ['connect']);
 
 var build_files = [
-  'assets/**/*.*',
-  'checks/**/*.*',
-  'gui/**/*.*',
-  'lib/**/*.*',
-  'pano/**/*.*',
-  'utils/**/*.*',
-  'vendor/**/*.*',
-  'main.js',
-  'fallback.js',
+  'css/**/*.*',
+  'data/**/*.*',
+  'img/**/*.*',
+  'js/**/*.*',
   'index.html'
 ];
 

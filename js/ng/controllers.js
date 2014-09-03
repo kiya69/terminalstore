@@ -6,9 +6,9 @@ app.controller('controller', function($scope, three) {
   };
 
   three.init(params);
-  three.load('/data/ionic/model.js');
+  three.load(config.baseUrl + config.model.url);
 
-  three.loadCards(config.cards.url, function(x) {
+  three.loadCards(config.baseUrl + config.cards.url, function(x) {
     // $scope.data = x;
     $scope.$apply(function() {
       $scope.data = x;

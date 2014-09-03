@@ -26,4 +26,5 @@ node_modules
 
 # Other
 data
+build
 .DS_Store
