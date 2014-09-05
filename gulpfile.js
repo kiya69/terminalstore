@@ -2,12 +2,26 @@ var gulp = require('gulp');
 var run = require('gulp-run');
 var connect = require('gulp-connect');
 var path = require('path');
+var stylus = require('gulp-stylus');
+var nib = require('nib');
 
 gulp.task('connect', function() {
   connect.server();
 });
 
-gulp.task('default', ['connect']);
+gulp.task('stylus', function() {
+  gulp.src('./css/**/*.styl')
+    .pipe(stylus({
+      use: [nib()]
+    }))
+    .pipe(gulp.dest('./css'));
+})
+
+gulp.task('watch', function() {
+  gulp.watch('./css/*.styl', ['stylus']);
+});
+
+gulp.task('default', ['connect', 'watch']);
 
 var build_files = [
   'css/**/*.*',
