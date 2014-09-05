@@ -1,7 +1,6 @@
 <html ng-app='app'>
   <head>
     <link rel='stylesheet' type='text/css' href='css/style.css'>
-    <link rel='stylesheet' type='text/css' href='css/loading.css'>
 
     <!-- Configuration -->
     <script src='js/config.js'></script>
@@ -37,7 +36,6 @@
   <body ng-controller='controller'>
     <!-- <ng-include src=''partials/user-prompt.html''></ng-include> -->
     <canvas id='main'></canvas>
-    <overlay></overlay>
     <screenshot></screenshot>
     <panel>
         <ul>
@@ -46,5 +44,11 @@
             </li>
         </ul>
     </panel>
+    <overlay></overlay>
+    <loading class="nprogress-custom-parent">
+        <div class="cell">
+            <p>Loading, bitch</p>
+        </div>
+    </loading>
   </body>
 </html>
