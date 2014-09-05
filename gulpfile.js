@@ -10,7 +10,7 @@ gulp.task('connect', function() {
 });
 
 gulp.task('stylus', function() {
-  gulp.src('./css/styl.styl')
+  gulp.src('./css/style.styl')
     .pipe(stylus({
       use: [nib()]
     }))
