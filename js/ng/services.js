@@ -48,23 +48,33 @@ app.factory('three', function($http, $log, $rootScope) {
     });
   }
 
+  function parseFileFromUrl(url) {
+    return url.split('/').slice(-1)[0].split('.')[0];
+  }
+
   function loadCards(url, callback) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
-      callback(data);
+
+      callback(data.map(parseFileFromUrl));
+
+      var cards = window.location.hash.substring(1).split(';');
+
       for (var i = 0; i < data.length; i++) {
         loader.load(config.baseUrl + data[i], (function(url) {
           return function(object) {
             object = object.children[0];
-            object.material.emissive.setRGB(1, 1, 1);
+            object.material.emissive.setRGB(0, 1, 0);
+            object.material.transparent = true;
+            object.material.renderDepth = -1.1;
+            object.material.opacity = 0.2;
+
             object.rotation.x = -Math.PI / 2;
 
             object.material.side = THREE.DoubleSide;
 
-            object.visible = false;
-            object.name = url;
-
-            console.log(object.name)
+            object.name = parseFileFromUrl(url);
+            object.visible = cards.indexOf(object.name) > -1;
 
             demo.cards.push(object);
             demo.scene.add(object);
@@ -79,7 +89,6 @@ app.factory('three', function($http, $log, $rootScope) {
   }
 
   function onCardClick(url) {
-    console.log(url)
     var object = demo.scene.getObjectByName(url);
     object.visible = !object.visible;
   }

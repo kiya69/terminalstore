@@ -7,7 +7,6 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Info panel
 - Admin Panel
 - Loading screen
-- Save state data to URL
 - Testing
 - Style screenshot button
 - Style instruction banner
@@ -17,6 +16,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Hierarchical UI by floor?
 
 # Done
+- Save state data to URL
 - Set up angular + webgl application
 - Establish comms
 - Compress model

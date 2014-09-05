@@ -1,5 +1,5 @@
 var config = {
-  baseUrl: '/buildings',
+  baseUrl: '',
   backgroundColor: 'rgb(200, 200, 200)',
   zoomDistance: {
     init: 250,
@@ -17,6 +17,7 @@ var config = {
     current: 0
   },
   cards: {
-    url: '/data/ionic/cards/cards.json'
+    url: '/data/ionic/cards/',
+    json: 'cards.json'
   }
 };

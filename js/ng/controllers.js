@@ -6,10 +6,9 @@ app.controller('controller', function($scope, three) {
   };
 
   three.init(params);
-  three.load(config.baseUrl + config.model.url);
+  // three.load(config.baseUrl + config.model.url);
 
-  three.loadCards(config.baseUrl + config.cards.url, function(x) {
-    // $scope.data = x;
+  three.loadCards(config.baseUrl + config.cards.url + config.cards.json, function(x) {
     $scope.$apply(function() {
       $scope.data = x;
       config.cards.data = x;
@@ -18,7 +17,23 @@ app.controller('controller', function($scope, three) {
 
   $scope.onCardClick = function(card) {
     three.onCardClick(card);
-  }
+    doGhettoThingWithHash(card);
+  };
+
+  function doGhettoThingWithHash(card) {
+    var hash = window.location.hash.substring(1);
+
+    var cards = hash.split(';')
+    var index = cards.indexOf(card);
+
+    if (index > -1) {
+      cards.splice(index, 1);
+    } else {
+      cards.push(card);
+    }
+
+    window.location.hash = cards.join(';');
+  };
 });
 
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {
