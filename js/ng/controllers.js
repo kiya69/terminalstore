@@ -6,7 +6,21 @@ app.controller('controller', function($scope, three) {
   };
 
   three.init(params);
-  // three.load(config.baseUrl + config.model.url);
+  NProgress.start();
+  radio('progress').subscribe(function(url, size) {
+    config.progress.current += size;
+    var pct = config.progress.current / config.progress.total;
+    NProgress.set(pct);
+    console.log(pct);
+    // NProgress.inc();
+    if (pct == 1) NProgress.done();
+  });
+
+  radio('progress.total').subscribe(function(size) {
+    config.progress.total = size;
+  });
+
+  three.load(config.baseUrl + config.model.url);
 
   three.loadCards(config.baseUrl + config.cards.url + config.cards.json, function(x) {
     $scope.$apply(function() {

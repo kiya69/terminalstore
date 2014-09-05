@@ -6,16 +6,18 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 # TODO
 - Info panel
 - Admin Panel
-- Loading screen
 - Testing
 - Style screenshot button
 - Style instruction banner
+- Style loading screen
 - Help text copy
 - Update model
 - No WebGL
 - Hierarchical UI by floor?
+- Add powered by floored
 
 # Done
+- Loading screen
 - Save state data to URL
 - Set up angular + webgl application
 - Establish comms
