@@ -31,11 +31,8 @@ app.directive('screenshot', function(three) {
   return {
     restrict: 'E',
     link: function(scope, element) {
-      var button = document.createElement('div');
-      button.id = 'screenshot-button';
-      element.append(button);
 
-      $('#screenshot-button').click(function() {
+      $('screenshot').click(function() {
         three.screenshot('screenshot.jpg');
       });
     }

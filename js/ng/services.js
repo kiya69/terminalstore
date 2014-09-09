@@ -48,18 +48,20 @@ app.factory('three', function($http, $log, $rootScope) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
 
-      callback(data.map(parseFileFromUrl));
+      callback(data.map(function(curr, i, a) {
+        return parseFileFromUrl(curr.url);
+      }));
 
       var cards = window.location.hash.substring(1).split(';');
 
       for (var i = 0; i < data.length; i++) {
-        loader.load(config.baseUrl + data[i], (function(url) {
+        loader.load(config.baseUrl + data[i].url, (function(url) {
           return function(object) {
             object = object.children[0];
-            object.material.emissive.setRGB(0, 1, 0);
+            object.material.emissive.setRGB(0, 0, 5);
             object.material.transparent = true;
             object.material.renderDepth = -1.1;
-            object.material.opacity = 0.2;
+            object.material.opacity = 0.4;
 
             object.rotation.x = -Math.PI / 2;
 
@@ -71,7 +73,7 @@ app.factory('three', function($http, $log, $rootScope) {
             demo.cards.push(object);
             demo.scene.add(object);
           }
-        })(data[i]))
+        })(data[i].url))
       }
     });
   }

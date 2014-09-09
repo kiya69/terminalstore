@@ -7,13 +7,21 @@ app.controller('controller', function($scope, three) {
 
   three.init(params);
   NProgress.start();
+
   radio('progress').subscribe(function(url, size) {
     config.progress.current += size;
     var pct = config.progress.current / config.progress.total;
     NProgress.set(pct);
-    console.log(pct);
-    // NProgress.inc();
-    if (pct == 1) NProgress.done();
+    if (pct == 1) {
+      NProgress.done();
+      var loading = document.getElementsByTagName('loading')[0];
+      loading.id = 'loading-close';
+
+      // This is straight up ghetto
+      setTimeout(function() {
+        $('loading').remove();
+      }, 500);
+    }
   });
 
   radio('progress.total').subscribe(function(size) {

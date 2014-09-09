@@ -5,16 +5,15 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 
 # TODO
 - Info panel
-- Admin Panel
-- Testing
-- Style screenshot button
-- Style instruction banner
-- Style loading screen
-- Help text copy
+- Hover over items
+- Make indication to click
+- Square foot data
+- Tally square foot
+- Group by floor
 - Update model
-- No WebGL
-- Hierarchical UI by floor?
 - Add powered by floored
+- Testing
+- No WebGL
 
 # Done
 - Loading screen
@@ -31,6 +30,13 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Progress infrastructure
 - Help text / panel
 - Screenshot (aka v1 fallback)
+- Style screenshot button
+- Style instruction banner
+- Remove screenshot-button element
+
+- Style loading screen
+- Help text copy
+- Admin Panel
 
 # Model TODO
 - Create panel geometry as separate OBJs

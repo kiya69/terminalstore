@@ -2,8 +2,8 @@ var config = {
   baseUrl: '',
   backgroundColor: 'rgb(200, 200, 200)',
   zoomDistance: {
-    init: 250,
-    min: 200,
+    init: 150,
+    min: 150,
     max: 300
   },
   orbitAngle: {
