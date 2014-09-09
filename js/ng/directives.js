@@ -35,6 +35,10 @@ app.directive('screenshot', function(three) {
       $('screenshot').click(function() {
         three.screenshot('screenshot.jpg');
       });
+      $('canvas').click(function() {
+        var infoDiv = document.getElementsByTagName('unitInfo')[0];
+        infoDiv.style.visibility = "hidden";
+      });
     }
   };
 });

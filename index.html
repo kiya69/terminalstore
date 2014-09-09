@@ -39,7 +39,7 @@
     <screenshot></screenshot>
     <panel>
         <ul>
-            <li ng-repeat='card in data' ng-click='onCardClick(card)'>
+            <li ng-repeat='card in data' ng-click='onCardClick(card, $index)'>
                 {{ card }}
             </li>
         </ul>
@@ -49,5 +49,10 @@
             Click and drag to look. Scroll to zoom. <br />To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
         </p>
     </loading>
+    <menu>
+        <div class="close"></div>
+        <a href="#" id="rok" slide-toggle='#subbldgnav' ng-click="submenu();">&#9662; &emsp; All Units</a>
+    </menu>
+    <unitInfo></unitInfo>
   </body>
 </html>

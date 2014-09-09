@@ -37,10 +37,18 @@ app.controller('controller', function($scope, three) {
     });
   });
 
-  $scope.onCardClick = function(card) {
+  $scope.onCardClick = function(card, idx) {
     three.onCardClick(card);
     doGhettoThingWithHash(card);
+    showInfo(idx);
   };
+
+  function showInfo(idx) {
+    var infoDiv = document.getElementsByTagName('unitInfo')[0];
+    infoDiv.style.visibility = "visible";
+    var index = document
+    infoDiv.innerHTML = config.cards.info[idx].size + "</br>Availability: " + config.cards.info[idx].availability;
+  }
 
   function doGhettoThingWithHash(card) {
     var hash = window.location.hash.substring(1);

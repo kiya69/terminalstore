@@ -47,7 +47,7 @@ app.factory('three', function($http, $log, $rootScope) {
   function loadCards(url, callback) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
-
+      config.cards.info = data;
       callback(data.map(function(curr, i, a) {
         return parseFileFromUrl(curr.url);
       }));

@@ -73,6 +73,11 @@ Demo.Scene.prototype = {
     var img = uriToBlob(uri);
     img.type = 'image/jpeg';
     saveAs(img, filename);
+  },
+  infoPanel: function(argument) {
+    var body = document.getElementsByTagName('body');
+    var infoPanel = document.createElement('infoPanel');
+    body.appendChild(infoPanel);
   }
 
 };

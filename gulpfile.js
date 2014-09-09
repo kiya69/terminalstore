@@ -4,7 +4,6 @@ var connect = require('gulp-connect');
 var path = require('path');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
-
 gulp.task('connect', function() {
   connect.server();
 });

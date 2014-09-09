@@ -72,10 +72,11 @@ panel
   top 0
   left 0
   height 100%
+  width auto
   padding-right 2em
   line-height 1.75
   background-color #808088
-  overflow scroll
+  overflow auto
   transition transform 0.25s ease
   color white
 
@@ -88,6 +89,7 @@ panel
   li
     padding 0 0 0 1em
     list-style none
+    width 100%
 
     :hover
       color #888
@@ -111,3 +113,24 @@ loading
 #loading-close
   opacity 0
   transition opacity 0.75s ease-in-out
+
+menu
+  display inline-block
+  position absolute
+  left 50%
+  margin 5px
+  margin-top 20px
+  top: 3%
+
+unitInfo
+  position absolute
+  left 12.5%
+  top 12.5%
+  margin 5px
+  top 3%
+  width 75%
+  height 75%  
+  background rgba(255,255,255,0.5)
+  visibility hidden
+
+   
