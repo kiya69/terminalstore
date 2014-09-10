@@ -99,6 +99,8 @@ app.factory('three', function($http, $log, $rootScope) {
 
   function checkPicker() {
     var intersects = getIntersects(demo.camera, demo.mouse2D.clone());
+    var infoDiv = document.getElementsByTagName('unitInfo')[0];
+    if (infoDiv.style.visibility == "visible") return;
     for (var each in demo.scene.children) {
       if (demo.scene.children[each].name !== "") demo.scene.children[each].visible = false;
       if (intersects && intersects.length > 0) {

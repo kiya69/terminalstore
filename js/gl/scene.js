@@ -95,23 +95,6 @@ Demo.Scene.prototype = {
     var img = uriToBlob(uri);
     img.type = 'image/jpeg';
     saveAs(img, filename);
-  },
-  onDocumentMouseMove: function(mouse2D, event) {
-    event.preventDefault();
-    var canvas = document.getElementsByTagName('canvas')[0];
-
-    var marginX = (window.innerWidth - canvas.width) / 2;
-
-    // Make sure mouse movement is in container
-    if (event.clientX > marginX && event.clientX < window.innerWidth - marginX && event.clientY < canvas.height) {
-
-      // Convert eventX and eventY to mouse2D
-      var clientX = event.clientX - marginX;
-      var clientY = event.clientY;
-
-      mouse2D.x = (clientX / canvas.width) * 2 - 1;
-      mouse2D.y = -(clientY / canvas.height) * 2 + 1;
-    }
   }
 
 };
