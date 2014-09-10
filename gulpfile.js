@@ -5,7 +5,9 @@ var path = require('path');
 var stylus = require('gulp-stylus');
 var nib = require('nib');
 gulp.task('connect', function() {
-  connect.server();
+  connect.server({
+    port: 8880
+  });
 });
 
 gulp.task('stylus', function() {

@@ -46,7 +46,6 @@ app.controller('controller', function($scope, three) {
   function showInfo(idx) {
     var infoDiv = document.getElementsByTagName('unitInfo')[0];
     infoDiv.style.visibility = "visible";
-    var index = document
     infoDiv.innerHTML = config.cards.info[idx].size + "</br>Availability: " + config.cards.info[idx].availability;
   }
 

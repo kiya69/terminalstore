@@ -13,7 +13,10 @@ app.factory('three', function($http, $log, $rootScope) {
   function animate() {
     requestAnimationFrame(animate);
     render();
+    if (demo.scene.children.length > 0 && demo.controls.enabled) checkPicker();
   }
+
+
 
   function render() {
     demo.renderer.render(demo.scene, demo.camera);
@@ -87,6 +90,23 @@ app.factory('three', function($http, $log, $rootScope) {
     object.visible = !object.visible;
   }
 
+  function getIntersects(camera, mouse) {
+    var projector = new THREE.Projector();
+    var raycasters = projector.pickingRay(mouse, camera);
+
+    return (raycasters.intersectObjects(demo.scene.children));
+  }
+
+  function checkPicker() {
+    var intersects = getIntersects(demo.camera, demo.mouse2D.clone());
+    for (var each in demo.scene.children) {
+      if (demo.scene.children[each].name !== "") demo.scene.children[each].visible = false;
+      if (intersects && intersects.length > 0) {
+        var object = demo.scene.getObjectByName(intersects[0].object.name);
+        object.visible = true;
+      }
+    }
+  }
   return {
     init: init,
     load: load,

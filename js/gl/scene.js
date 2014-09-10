@@ -1,5 +1,22 @@
 var Demo = Demo || {};
+var mouse2D = new THREE.Vector3(0, 10000, 0.5);
+var onDocumentMouseMove = function(mouse2D, event) {
+  event.preventDefault();
+  var canvas = document.getElementsByTagName('canvas')[0];
 
+  var marginX = (window.innerWidth - canvas.width) / 2;
+
+  // Make sure mouse movement is in container
+  if (event.clientX > marginX && event.clientX < window.innerWidth - marginX && event.clientY < canvas.height) {
+
+    // Convert eventX and eventY to mouse2D
+    var clientX = event.clientX - marginX;
+    var clientY = event.clientY;
+
+    mouse2D.x = (clientX / canvas.width) * 2 - 1;
+    mouse2D.y = -(clientY / canvas.height) * 2 + 1;
+  }
+}
 Demo.Scene = function(params) {
 
   this.container = document.getElementById(params.canvasId);
@@ -19,7 +36,6 @@ Demo.Scene = function(params) {
   this.setup = null;
   this.camera = null;
   this.controls = null;
-
   this.init();
 
 };
@@ -51,6 +67,12 @@ Demo.Scene.prototype = {
     this.listeners();
 
     this.controls = new THREE.OrbitControls(this.camera, this.container);
+
+    this.mouse2D = new THREE.Vector3(0, 10000, 0.5);
+    var that = this;
+    this.renderer.domElement.addEventListener('mousemove', function(e) {
+      onDocumentMouseMove(that.mouse2D, event)
+    }, false);
   },
 
   listeners: function() {
@@ -74,10 +96,22 @@ Demo.Scene.prototype = {
     img.type = 'image/jpeg';
     saveAs(img, filename);
   },
-  infoPanel: function(argument) {
-    var body = document.getElementsByTagName('body');
-    var infoPanel = document.createElement('infoPanel');
-    body.appendChild(infoPanel);
+  onDocumentMouseMove: function(mouse2D, event) {
+    event.preventDefault();
+    var canvas = document.getElementsByTagName('canvas')[0];
+
+    var marginX = (window.innerWidth - canvas.width) / 2;
+
+    // Make sure mouse movement is in container
+    if (event.clientX > marginX && event.clientX < window.innerWidth - marginX && event.clientY < canvas.height) {
+
+      // Convert eventX and eventY to mouse2D
+      var clientX = event.clientX - marginX;
+      var clientY = event.clientY;
+
+      mouse2D.x = (clientX / canvas.width) * 2 - 1;
+      mouse2D.y = -(clientY / canvas.height) * 2 + 1;
+    }
   }
 
 };
