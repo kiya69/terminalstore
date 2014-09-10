@@ -39,7 +39,7 @@
     <screenshot></screenshot>
     <panel>
         <ul>
-            <li ng-repeat='card in data' ng-click='onCardClick(card, $index)'>
+            <li ng-repeat='card in data' ng-click='onCardClick(card)' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false">
                 {{ card }}
             </li>
         </ul>

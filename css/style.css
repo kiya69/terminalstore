@@ -89,8 +89,8 @@ panel li {
   list-style: none;
   width: 100%;
 }
-panel li :hover {
-  color: #888;
+.red {
+  color: #bbb !important;
 }
 loading {
   position: absolute;
