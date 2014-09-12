@@ -17,6 +17,17 @@ var onDocumentMouseMove = function(mouse2D, event) {
     mouse2D.y = -(clientY / canvas.height) * 2 + 1;
   }
 }
+
+function onMouseUp(scope, event) {
+  // clickTime = Date.now() - clickTime;
+
+  // var intersects = scope.getIntersects(scope.camera, scope.mouse2D.clone());
+
+  // if (intersects.length > 1) {
+  //   //centerBuilding(intersectedObject);
+  //   console.log(intersects);
+  // }
+}
 Demo.Scene = function(params) {
 
   this.container = document.getElementById(params.canvasId);
@@ -73,6 +84,9 @@ Demo.Scene.prototype = {
     this.renderer.domElement.addEventListener('mousemove', function(e) {
       onDocumentMouseMove(that.mouse2D, event)
     }, false);
+    // this.renderer.domElement.addEventListener('mouseup', function(e) {
+    //   onMouseUp(that, event)
+    // }, false);
   },
 
   listeners: function() {

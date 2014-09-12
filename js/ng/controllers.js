@@ -4,7 +4,8 @@ app.controller('controller', function($scope, three) {
   var params = {
     canvasId: 'main'
   };
-
+  var total = 0;
+  var html = "";
   three.init(params);
   NProgress.start();
 
@@ -40,13 +41,21 @@ app.controller('controller', function($scope, three) {
   $scope.onCardClick = function(card, idx) {
     three.onCardClick(card);
     doGhettoThingWithHash(card);
-    showInfo(idx);
+    showInfo(card, idx);
   };
 
-  function showInfo(idx) {
+  function showInfo(card, idx) {
     var infoDiv = document.getElementsByTagName('unitInfo')[0];
     infoDiv.style.visibility = "visible";
-    infoDiv.innerHTML = config.cards.info[idx].size + "</br>Availability: " + config.cards.info[idx].availability;
+    // TODO if it's the second click on the card, should delete/minus it
+    total += config.cards.info[idx].size
+    var totalHTML = "total: " + total + " sqft";
+    html += "Unit: " + card + "</br>Size:" + config.cards.info[idx].size + "</br>Availability: " + config.cards.info[idx].availability + "</br></br>";
+    infoDiv.innerHTML = html + totalHTML;
+    // var totalDiv = document.createElement('total');
+
+    // totalDiv.innerHTML = 
+    // infoDiv.appendChild(totalDiv);
   }
 
   function doGhettoThingWithHash(card) {
