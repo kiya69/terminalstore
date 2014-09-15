@@ -37,7 +37,7 @@ app.directive('screenshot', function(three) {
       });
       $('canvas').click(function() {
         var infoDiv = document.getElementsByTagName('unitInfo')[0];
-        infoDiv.style.visibility = "hidden";
+        // infoDiv.style.visibility = "hidden";
       });
     }
   };

@@ -13,7 +13,10 @@ app.factory('three', function($http, $log, $rootScope) {
   function animate() {
     requestAnimationFrame(animate);
     render();
-    if (demo.scene.children.length > 0 && demo.controls.enabled) checkPicker();
+    if (demo.scene.children.length > 0 && demo.controls.enabled) {
+      demo.checkPicker();
+      demo.showInfo();
+    }
   }
 
 
@@ -88,31 +91,9 @@ app.factory('three', function($http, $log, $rootScope) {
   function onCardClick(url) {
     var object = demo.scene.getObjectByName(url);
     object.visible = !object.visible;
+    demo.addCardToUrl(url);
   }
 
-  function getIntersects(camera, mouse) {
-    var projector = new THREE.Projector();
-    var raycasters = projector.pickingRay(mouse, camera);
-
-    return (raycasters.intersectObjects(demo.scene.children));
-  }
-
-  function checkPicker() {
-    var intersects = getIntersects(demo.camera, demo.mouse2D.clone());
-    var infoDiv = document.getElementsByTagName('unitInfo')[0];
-    var hovered = false;
-    var cards = window.location.hash.substring(1).split(';');
-    if (intersects && intersects.length > 0) hovered = true;
-    if (infoDiv.style.visibility == "visible") return;
-    for (var each in demo.scene.children) {
-      if (demo.scene.children[each].name !== "" && window.location.hash.indexOf(demo.scene.children[each].name) == -1) demo.scene.children[each].visible = false;
-      // else if (window.location.hash.indexOf(demo.scene.children[each].name) > -1) demo.scene.children[each].visible = true;
-      if (intersects && intersects.length > 0) {
-        var object = demo.scene.getObjectByName(intersects[0].object.name);
-        object.visible = true;
-      }
-    }
-  }
   return {
     init: init,
     load: load,

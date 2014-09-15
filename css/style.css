@@ -70,13 +70,14 @@ panel {
   top: 0;
   left: 0;
   height: 100%;
-  width: auto;
+  width: 5%;
   padding-right: 2em;
   line-height: 1.75;
   background-color: #808088;
-  overflow: auto;
+  overflow: scroll;
   transition: transform 0.25s ease;
   color: #fff;
+  z-index: 1;
 }
 panel.closed {
   transform: translateX(-100%);
@@ -120,15 +121,14 @@ menu {
 }
 unitInfo {
   position: absolute;
-  left: 12.5%;
-  top: 12.5%;
-  margin: 5px;
-  top: 3%;
-  width: 75%;
-  height: 75%;
+  left: 6.6%;
+  top: 0%;
+  padding: 0 0 1em 1em;
+  width: 12.5%;
+  height: 100%;
   background: rgba(255,255,255,0.5);
-  visibility: hidden;
   overflow: auto;
+  z-index: 0;
 }
 #nprogress {
   pointer-events: none;
