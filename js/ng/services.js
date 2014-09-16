@@ -15,7 +15,6 @@ app.factory('three', function($http, $log, $rootScope) {
     render();
     if (demo.scene.children.length > 0 && demo.controls.enabled) {
       demo.checkPicker();
-      demo.showInfo();
     }
   }
 
@@ -81,6 +80,8 @@ app.factory('three', function($http, $log, $rootScope) {
           }
         })(data[i].url))
       }
+
+      demo.showInfo();
     });
   }
 

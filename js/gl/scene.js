@@ -1,5 +1,6 @@
 var Demo = Demo || {};
 var mouse2D = new THREE.Vector3(0, 10000, 0.5);
+var justClicked;
 var onDocumentMouseMove = function(mouse2D, event) {
   event.preventDefault();
   var canvas = document.getElementsByTagName('canvas')[0];
@@ -19,21 +20,14 @@ var onDocumentMouseMove = function(mouse2D, event) {
 }
 
 function onMouseUp(scope, event) {
-  // clickTime = Date.now() - clickTime;
-
   var intersects = getIntersects(scope.camera, scope.mouse2D.clone(), scope.scene.children);
 
   if (intersects.length > 0) {
-    //centerBuilding(intersectedObject);
     console.log(intersects[0].object.name);
     scope.addCardToUrl(intersects[0].object.name);
-    // var object = scope.scene.getObjectByName(intersects[0].object.name);
-    // object.visible = !object.visible;
+    var object = scope.scene.getObjectByName(intersects[0].object.name);
+    justClicked = object;
   }
-  // else {
-  //   var infoDiv = document.getElementsByTagName('unitInfo')[0];
-  //   infoDiv.style.visibility = "hidden";
-  // }
 }
 
 function showInfo() {
@@ -54,20 +48,13 @@ function showInfo() {
     }
 
   }
-  // total += config.cards.info[idx].size
-  var totalHTML = "Total: " + parseInt(total).formatComma() + " sf";
-  // html += "Unit: " + card + "</br>Size:" + config.cards.info[idx].size + "</br>Availability: " + config.cards.info[idx].availability + "</br></br>";
+  var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
   infoDiv.innerHTML = html + totalHTML;
-  // var totalDiv = document.createElement('total');
-
-  // totalDiv.innerHTML = 
-  // infoDiv.appendChild(totalDiv);
 }
 
 function getIntersects(camera, mouse, children) {
   var projector = new THREE.Projector();
   var raycasters = projector.pickingRay(mouse, camera);
-  //TODO: should move to scene
   return (raycasters.intersectObjects(children));
 }
 
@@ -153,20 +140,22 @@ Demo.Scene.prototype = {
     img.type = 'image/jpeg';
     saveAs(img, filename);
   },
-  checkPicker: function() { //TODO: should move to scene
+  checkPicker: function() {
     var intersects = getIntersects(this.camera, this.mouse2D.clone(), this.scene.children);
-    var infoDiv = document.getElementsByTagName('unitInfo')[0];
-    var hovered = false;
     var cards = window.location.hash.substring(1).split(';');
-    // if (infoDiv.style.visibility == "visible") return;
     for (var each in this.scene.children) {
       if (this.scene.children[each].name !== "" && cards.indexOf(this.scene.children[each].name) == -1) this.scene.children[each].visible = false;
-      // else if (window.location.hash.indexOf(demo.scene.children[each].name) > -1) demo.scene.children[each].visible = true;
-      if (intersects && intersects.length > 0) {
-        var object = this.scene.getObjectByName(intersects[0].object.name);
-        object.visible = true;
-      }
+      else this.scene.children[each].visible = true;
     }
+    if (intersects && intersects.length > 0) {
+      var object = this.scene.getObjectByName(intersects[0].object.name);
+      if (justClicked == object) {
+        return;
+      }
+      object.visible = true;
+      justClicked = null;
+    }
+
   },
   addCardToUrl: function(card) {
     var hash = window.location.hash.substring(1);
@@ -179,7 +168,6 @@ Demo.Scene.prototype = {
     } else {
       cards.push(card);
     }
-
     window.location.hash = cards.join(';');
     showInfo();
   },
