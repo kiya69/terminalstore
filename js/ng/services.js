@@ -49,14 +49,19 @@ app.factory('three', function($http, $log, $rootScope) {
     return url.split('/').slice(-1)[0].split('.')[0];
   }
 
+  function loadGroups(url) {
+    $.getJSON(url, function(groups) {
+      config.groups = groups;
+      // callback(function() {
+      return groups;
+      // });
+    });
+  }
+
   function loadCards(url, callback) {
     var loader = new THREE.OBJLoader();
     $.getJSON(url, function(data) {
       config.cards.info = data;
-      callback(data.map(function(curr, i, a) {
-        return parseFileFromUrl(curr.url);
-      }));
-
       var cards = window.location.hash.substring(1).split(';');
 
       for (var i = 0; i < data.length; i++) {
@@ -74,13 +79,22 @@ app.factory('three', function($http, $log, $rootScope) {
 
             object.name = parseFileFromUrl(url);
             object.visible = cards.indexOf(object.name) > -1;
-
             demo.cards.push(object);
             demo.scene.add(object);
           }
         })(data[i].url))
       }
-
+      callback(config.cards.info.map(function(curr, i, a) {
+        var cards = window.location.hash.substring(1).split(';');
+        var selected = false;
+        var name = parseFileFromUrl(curr.url);
+        for (var i = 1; i < cards.length; i++)
+          if (name == cards[i]) selected = true;
+        return {
+          "name": name,
+          "selected": selected
+        };
+      }));
       demo.showInfo();
     });
   }
@@ -89,17 +103,22 @@ app.factory('three', function($http, $log, $rootScope) {
     demo.screenshot(filename);
   }
 
-  function onCardClick(url) {
-    var object = demo.scene.getObjectByName(url);
-    object.visible = !object.visible;
-    demo.addCardToUrl(url);
+  function onCardClick(card) {
+    // var object = demo.scene.getObjectByName(url);
+    // object.visible = !object.visible;
+    demo.addCardToUrl(card.name);
   }
 
+  function onMouseUp() {
+    return demo.onMouseUp();
+  }
   return {
     init: init,
     load: load,
     loadCards: loadCards,
     screenshot: screenshot,
-    onCardClick: onCardClick
+    onCardClick: onCardClick,
+    onMouseUp: onMouseUp,
+    loadGroups: loadGroups
   };
 });

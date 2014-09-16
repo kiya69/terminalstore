@@ -19,14 +19,18 @@ var onDocumentMouseMove = function(mouse2D, event) {
   }
 }
 
-function onMouseUp(scope, event) {
-  var intersects = getIntersects(scope.camera, scope.mouse2D.clone(), scope.scene.children);
+function onMouseUp(onCardClick) {
+  var intersects = getIntersects(this.camera, this.mouse2D.clone(), this.scene.children);
 
   if (intersects.length > 0) {
     console.log(intersects[0].object.name);
-    scope.addCardToUrl(intersects[0].object.name);
-    var object = scope.scene.getObjectByName(intersects[0].object.name);
+    this.addCardToUrl(intersects[0].object.name);
+    var object = this.scene.getObjectByName(intersects[0].object.name);
     justClicked = object;
+    // scope.data
+    // for (each in scope.data)
+    //   if (scope.data[each].name == intersects[0].object.name) scope.data[each].selected = !scope.data[each].selected
+    return intersects[0].object.name
   }
 }
 
@@ -34,15 +38,14 @@ function showInfo() {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
-  // TODO if it's the second click on the card, should delete/minus it or just show info based on url?
   var total = 0;
   var html = "";
   for (var i = 1, pickedCardsLen = cards.length; i < pickedCardsLen; i++) {
     var card;
     for (var j = 0, totalLen = config.cards.info.length; j < totalLen; j++) {
-      if (config.cards.data[j] == cards[i]) {
+      if (config.cards.data[j].name == cards[i]) {
         card = config.cards.info[j];
-        total += config.cards.info[j].size;
+        total += card.size;
         html += "Unit: " + cards[i] + "</br>Size: " + parseInt(card.size).formatComma() + "</br>Availability: " + card.availability + "</br></br>";
       }
     }
@@ -50,6 +53,7 @@ function showInfo() {
   }
   var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
   infoDiv.innerHTML = html + totalHTML;
+  if (html == "") infoDiv.style.visibility = "hidden";
 }
 
 function getIntersects(camera, mouse, children) {
@@ -114,9 +118,9 @@ Demo.Scene.prototype = {
     this.renderer.domElement.addEventListener('mousemove', function(e) {
       onDocumentMouseMove(that.mouse2D, event)
     }, false);
-    this.renderer.domElement.addEventListener('mouseup', function(e) {
-      onMouseUp(that, event)
-    }, false);
+    // this.renderer.domElement.addEventListener('mouseup', function(e) {
+    //   onMouseUp(that)
+    // }, false);
   },
 
   listeners: function() {
@@ -163,7 +167,7 @@ Demo.Scene.prototype = {
     var cards = hash.split(';')
     var index = cards.indexOf(card);
 
-    if (index > -1) {
+    if (index > -1) { //if there is the card in url
       cards.splice(index, 1);
     } else {
       cards.push(card);
@@ -171,5 +175,6 @@ Demo.Scene.prototype = {
     window.location.hash = cards.join(';');
     showInfo();
   },
-  showInfo: showInfo
+  showInfo: showInfo,
+  onMouseUp: onMouseUp
 };

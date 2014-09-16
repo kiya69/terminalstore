@@ -36,12 +36,13 @@
 
   <body ng-controller='controller'>
     <!-- <ng-include src=''partials/user-prompt.html''></ng-include> -->
-    <canvas id='main'></canvas>
+    <canvas id='main' ng-click='onCanvasClick()'></canvas>
     <screenshot></screenshot>
     <panel>
         <ul>
-            <li ng-repeat='card in data' ng-click='onCardClick(card, $index)' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-                {{ card }}
+            <li ng-repeat='group in groups'> {{group.full_name}}</li>
+            <li ng-repeat='card in data' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false">
+                <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true)'>{{ card.name }}</a>
             </li>
         </ul>
     </panel>

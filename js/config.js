@@ -19,5 +19,9 @@ var config = {
   cards: {
     url: '/data/ionic/cards/',
     json: 'cards.json'
+  },
+  groups: {
+    url: '/data/ionic/cards/',
+    json: 'floors.json'
   }
 };
