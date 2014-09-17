@@ -38,19 +38,25 @@
     <!-- <ng-include src=''partials/user-prompt.html''></ng-include> -->
     <canvas id='main' ng-click='onCanvasClick()'></canvas>
     <screenshot></screenshot>
-    <panel>
-        <ul>
-            <li ng-repeat='group in groups'> {{group.full_name}}</li>
-            <li ng-repeat='card in data' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-                <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true)'>{{ card.name }}</a>
-            </li>
-        </ul>
-    </panel>
+    <div id = "infoContainer">
+        <panel>
+            <ul>
+                <li ng-repeat='group in groups'><span ng-click='showCard=!showCard; sign=showSign(showCard)' > {{sign + group.full_name}}</span>
+                    <ul ng-show="showCard">
+                        <li ng-repeat='card in data' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false"  ng-show="show=filterGroups(group.short_name, card.name)">
+                            <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true); showCard = true'>{{ show }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </panel>
+        <unitInfo></unitInfo>
+    </div>
     <loading class="nprogress-custom-parent">
         <p class="instructions">
             Click and drag to look. Scroll to zoom. <br />To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
         </p>
     </loading>
-    <unitInfo></unitInfo>
+    
   </body>
 </html>

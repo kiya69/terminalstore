@@ -33,27 +33,18 @@ app.controller('controller', function($scope, three) {
     $scope.$apply(function() {
       $scope.data = x;
       config.cards.data = x;
-      // $scope.cards = window.location.hash.substring(1).split(';');
-      // $scope.cardSelect =
-      //load checkbox true/false
+    });
+  });
+  three.loadGroups(config.baseUrl + config.groups.url + config.groups.json, function(groups) {
+    $scope.$apply(function() {
+      $scope.groups = groups;
+      config.groups = groups;
     });
 
   });
-  // $scope.groups = three.loadGroups(config.baseUrl + config.groups.url + config.groups.json); //, function(groups) {
-  // $scope.$apply(function() {
-  //   $scope.groups = groups;
-  //   config.groups = groups;
-  // $scope.cards = window.location.hash.substring(1).split(';');
-  // $scope.cardSelect =
-  //load checkbox true/false
-  // });
-
-  // });
   $scope.onCardClick = function(card, fromText) {
     three.onCardClick(card);
-    if (fromText)
-      card.selected = !card.selected
-      // three.addHashToUrl(card);
+    if (fromText) card.selected = !card.selected;
 
   };
   $scope.onCanvasClick = function() {
@@ -63,6 +54,16 @@ app.controller('controller', function($scope, three) {
         $scope.data[i].selected = !$scope.data[i].selected;
       // three.addHashToUrl(card);
 
+  };
+  $scope.filterGroups = function(group, card) {
+    if (card.indexOf(group) > -1)
+      return card;
+  };
+  $scope.sign = '+ ';
+  $scope.showSign = function(showCard) {
+    // $scope.showCard = showCard = !showCard;
+    if (showCard) return '- '; //$scope.sign[index] = '- ';
+    else return '+ '; //$scope.sign[index] = '+ ';
   };
 
 });

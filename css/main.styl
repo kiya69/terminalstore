@@ -67,19 +67,24 @@ screenshot
   background-size cover
   background-image url("../img/camera.svg")
 
-panel
+#infoContainer
   position absolute
   top 0
   left 0
   height 100%
-  width 5%
+  width auto
+
+panel
+  height 100%
+  width auto
   padding-right 2em
   line-height 1.75
   background-color #808088
   overflow scroll
   transition transform 0.25s ease
   color white
-  z-index 1
+  z-index 5
+  float left
   &.closed
     transform translateX(-100%)
 
@@ -124,12 +129,10 @@ menu
 
 unitInfo
   position absolute
-  left 6.6%
-  top 0%
   padding 1em 1em 1em 1em
   width auto
   height 100%  
   background rgba(255,255,255,0.5)
-  overflow auto
+  overflow scroll
   z-index 0
-   
+  white-space nowrap

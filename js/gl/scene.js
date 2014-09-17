@@ -19,7 +19,7 @@ var onDocumentMouseMove = function(mouse2D, event) {
   }
 }
 
-function onMouseUp(onCardClick) {
+function onMouseUp() {
   var intersects = getIntersects(this.camera, this.mouse2D.clone(), this.scene.children);
 
   if (intersects.length > 0) {
@@ -38,6 +38,7 @@ function showInfo() {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
+  // infoDiv.style.left = $('panel').width() + 'px'
   var total = 0;
   var html = "";
   for (var i = 1, pickedCardsLen = cards.length; i < pickedCardsLen; i++) {

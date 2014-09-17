@@ -49,11 +49,11 @@ app.factory('three', function($http, $log, $rootScope) {
     return url.split('/').slice(-1)[0].split('.')[0];
   }
 
-  function loadGroups(url) {
+  function loadGroups(url, callback) {
     $.getJSON(url, function(groups) {
       config.groups = groups;
-      // callback(function() {
-      return groups;
+      callback(groups);
+      // return groups;
       // });
     });
   }
