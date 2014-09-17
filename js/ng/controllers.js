@@ -47,7 +47,13 @@ app.controller('controller', function($scope, three) {
     if (fromText) card.selected = !card.selected;
 
   };
-  $scope.onCanvasClick = function() {
+  var clickTime;
+  $scope.onCanvasMouseDown = function() {
+    clickTime = Date.now();
+  };
+  $scope.onCanvasMouseUp = function() {
+    console.log(Date.now() - clickTime);
+    if(Date.now() - clickTime > 150) return;
     var cardName = three.onMouseUp();
     for (var i in $scope.data)
       if ($scope.data[i].name == cardName)

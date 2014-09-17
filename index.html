@@ -36,7 +36,7 @@
 
   <body ng-controller='controller'>
     <!-- <ng-include src=''partials/user-prompt.html''></ng-include> -->
-    <canvas id='main' ng-click='onCanvasClick()'></canvas>
+    <canvas id='main' ng-mousedown='onCanvasMouseDown()' ng-mouseup='onCanvasMouseUp()'></canvas>
     <screenshot></screenshot>
     <div id = "infoContainer">
         <panel>

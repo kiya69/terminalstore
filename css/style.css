@@ -78,7 +78,7 @@ panel {
   padding-right: 2em;
   line-height: 1.75;
   background-color: #808088;
-  overflow: scroll;
+  overflow: auto;
   transition: transform 0.25s ease;
   color: #fff;
   z-index: 5;
@@ -130,7 +130,7 @@ unitInfo {
   width: auto;
   height: 100%;
   background: rgba(255,255,255,0.5);
-  overflow: scroll;
+  overflow: auto;
   z-index: 0;
   white-space: nowrap;
 }
