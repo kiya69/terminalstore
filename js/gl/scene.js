@@ -38,7 +38,6 @@ function showInfo() {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
-  // infoDiv.style.left = $('panel').width() + 'px'
   var total = 0;
   var html = "";
   for (var i = 1, pickedCardsLen = cards.length; i < pickedCardsLen; i++) {

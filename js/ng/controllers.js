@@ -11,7 +11,7 @@ app.controller('controller', function($scope, three) {
     config.progress.current += size;
     var pct = config.progress.current / config.progress.total;
     NProgress.set(pct);
-    if (pct == 1) {
+    if (pct >= 1) {
       NProgress.done();
       var loading = document.getElementsByTagName('loading')[0];
       loading.id = 'loading-close';
@@ -61,9 +61,8 @@ app.controller('controller', function($scope, three) {
   };
   $scope.sign = '+ ';
   $scope.showSign = function(showCard) {
-    // $scope.showCard = showCard = !showCard;
-    if (showCard) return '- '; //$scope.sign[index] = '- ';
-    else return '+ '; //$scope.sign[index] = '+ ';
+    if (showCard) return '- ';
+    else return '+ ';
   };
 
 });

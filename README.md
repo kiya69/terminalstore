@@ -4,12 +4,6 @@ buildings.js
 http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 
 # TODO
-- Info panel
-- Hover over items
-- Make indication to click
-- Square foot data
-- Tally square foot
-- Group by floor
 - Update model
 - Add powered by floored
 - Testing
@@ -33,6 +27,12 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Style screenshot button
 - Style instruction banner
 - Remove screenshot-button element
+- Info panel
+- Hover over items
+- Make indication to click
+- Square foot data
+- Tally square foot
+- Group by floor
 
 - Style loading screen
 - Help text copy

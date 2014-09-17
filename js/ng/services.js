@@ -37,6 +37,9 @@ app.factory('three', function($http, $log, $rootScope) {
             child.material.transparent = true;
             child.material.renderDepth = -1.1;
             child.material.opacity = 0.2;
+          } else if (child.material.name.indexOf('street_names') != -1) {
+            child.material.transparent = true;
+            child.material.renderDepth = -1.1;
           }
         }
       });
