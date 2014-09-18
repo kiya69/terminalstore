@@ -28,13 +28,28 @@ app.controller('controller', function($scope, three) {
   });
 
   three.load(config.baseUrl + config.model.url);
-
-  three.loadCards(config.baseUrl + config.cards.url + config.cards.json, function(x) {
-    $scope.$apply(function() {
-      $scope.data = x;
-      config.cards.data = x;
-    });
+  Tabletop.init({
+    key: config.cards.key,
+    callback: loadCardsToScope,
+    simpleSheet: true
   });
+  // three.loadCards(config.baseUrl + config.cards.url + config.cards.json, function(x) {
+  //   $scope.$apply(function() {
+  //     $scope.data = x;
+  //     config.cards.data = x;
+  //   });
+  // });
+
+  function loadCardsToScope(data) {
+    // data comes through as a simple array since simpleSheet is turned on
+
+    $scope.$apply(function() {
+      $scope.data = three.loadCards(data);
+    });
+
+    config.cards.data = $scope.data;
+    three.showInfo();
+  }
   three.loadGroups(config.baseUrl + config.groups.url + config.groups.json, function(groups) {
     $scope.$apply(function() {
       $scope.groups = groups;
@@ -53,7 +68,7 @@ app.controller('controller', function($scope, three) {
   };
   $scope.onCanvasMouseUp = function() {
     console.log(Date.now() - clickTime);
-    if(Date.now() - clickTime > 150) return;
+    if (Date.now() - clickTime > 150) return;
     var cardName = three.onMouseUp();
     for (var i in $scope.data)
       if ($scope.data[i].name == cardName)

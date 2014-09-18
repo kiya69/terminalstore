@@ -45,7 +45,7 @@ function showInfo() {
     for (var j = 0, totalLen = config.cards.info.length; j < totalLen; j++) {
       if (config.cards.data[j].name == cards[i]) {
         card = config.cards.info[j];
-        total += card.size;
+        total += parseInt(card.size);
         html += "Unit: " + cards[i] + "</br>Size: " + parseInt(card.size).formatComma() + "</br>Availability: " + card.availability + "</br></br>";
       }
     }

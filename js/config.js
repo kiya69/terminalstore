@@ -18,7 +18,8 @@ var config = {
   },
   cards: {
     url: '/data/ionic/cards/',
-    json: 'cards.json'
+    json: 'cards.json',
+    key: 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1_tffuc_ntZsgpKFp7ecPvfcejrUCxeFS-08x4FlgZFk&output=html'
   },
   groups: {
     url: '/data/ionic/cards/',

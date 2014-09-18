@@ -23,6 +23,7 @@
     <script src='js/utils/saveAs.js'></script>
     <script src='js/utils/uriToBlob.js'></script>
     <script src='js/utils/format.js'></script>
+    <script src='js/utils/tabletop.js'></script>
 
     <!-- Angular components -->
     <script src='js/ng/app.js'></script>
@@ -42,9 +43,9 @@
         <panel>
             <ul>
                 <li ng-repeat='group in groups'><span ng-click='showCard=!showCard; sign=showSign(showCard)' > {{sign + group.full_name}}</span>
-                    <ul ng-show="showCard">
+                    <ul ng-show="showCard"> 
                         <li ng-repeat='card in data' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false"  ng-show="show=filterGroups(group.short_name, card.name)">
-                            <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true); showCard = true'>{{ show }}</a>
+                            <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true);'>{{ show }}</a>
                         </li>
                     </ul>
                 </li>
