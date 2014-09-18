@@ -38,7 +38,7 @@ app.controller('controller', function($scope, three) {
   //     $scope.data = x;
   //     config.cards.data = x;
   //   });
-  // });
+  // }); //the original way
 
   function loadCardsToScope(data) {
     // data comes through as a simple array since simpleSheet is turned on
@@ -67,7 +67,6 @@ app.controller('controller', function($scope, three) {
     clickTime = Date.now();
   };
   $scope.onCanvasMouseUp = function() {
-    console.log(Date.now() - clickTime);
     if (Date.now() - clickTime > 150) return;
     var cardName = three.onMouseUp();
     for (var i in $scope.data)

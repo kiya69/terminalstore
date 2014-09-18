@@ -23,7 +23,6 @@ function onMouseUp() {
   var intersects = getIntersects(this.camera, this.mouse2D.clone(), this.scene.children);
 
   if (intersects.length > 0) {
-    console.log(intersects[0].object.name);
     this.addCardToUrl(intersects[0].object.name);
     var object = this.scene.getObjectByName(intersects[0].object.name);
     justClicked = object;

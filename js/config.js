@@ -11,7 +11,7 @@ var config = {
     max: Math.PI / 2
   },
   model: {
-    url: '/data/ionic/model.js'
+    url: './data/ionic/model.js'
   },
   progress: {
     current: 0
@@ -22,7 +22,7 @@ var config = {
     key: 'https://docs.google.com/spreadsheet/pub?hl=en_US&hl=en_US&key=1_tffuc_ntZsgpKFp7ecPvfcejrUCxeFS-08x4FlgZFk&output=html'
   },
   groups: {
-    url: '/data/ionic/cards/',
+    url: './data/ionic/cards/',
     json: 'floors.json'
   }
 };

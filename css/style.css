@@ -72,25 +72,24 @@ screenshot {
   height: 100%;
   width: auto;
 }
-panel {
+.panel {
   height: 100%;
   width: auto;
   padding-right: 2em;
   line-height: 1.75;
   background-color: #808088;
   overflow: auto;
-  transition: transform 0.25s ease;
   color: #fff;
-  z-index: 5;
   float: left;
 }
-panel.closed {
+.panel.closed {
   transform: translateX(-100%);
 }
-panel ul {
+.panel ul {
   padding: 0;
 }
-panel li {
+.panel li {
+  white-space: nowrap;
   padding: 0 0 0 1em;
   list-style: none;
   width: 100%;
@@ -131,8 +130,8 @@ unitInfo {
   height: 100%;
   background: rgba(255,255,255,0.5);
   overflow: auto;
-  z-index: 0;
   white-space: nowrap;
+  transition: transform 0.25s ease;
 }
 #nprogress {
   pointer-events: none;

@@ -7,7 +7,7 @@
 
     <!-- Libraries -->
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-    <script src='http://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/radio/0.2.0/radio.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/nprogress/0.1.3/nprogress.min.js'></script>
@@ -40,9 +40,9 @@
     <canvas id='main' ng-mousedown='onCanvasMouseDown()' ng-mouseup='onCanvasMouseUp()'></canvas>
     <screenshot></screenshot>
     <div id = "infoContainer">
-        <panel>
+        <div class ='panel'>
             <ul>
-                <li ng-repeat='group in groups'><span ng-click='showCard=!showCard; sign=showSign(showCard)' > {{sign + group.full_name}}</span>
+                <li ng-repeat='group in groups'><span ng-click='sign=showSign(showCard=!showCard)' > {{sign + group.full_name}}</span>
                     <ul ng-show="showCard"> 
                         <li ng-repeat='card in data' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false"  ng-show="show=filterGroups(group.short_name, card.name)">
                             <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><a ng-click='onCardClick(card, true);'>{{ show }}</a>
@@ -50,7 +50,7 @@
                     </ul>
                 </li>
             </ul>
-        </panel>
+        </div>
         <unitInfo></unitInfo>
     </div>
     <loading class="nprogress-custom-parent">
