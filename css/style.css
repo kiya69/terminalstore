@@ -81,6 +81,7 @@ screenshot {
   overflow: auto;
   color: #fff;
   float: left;
+  transform: translateZ(0);
 }
 .panel.closed {
   transform: translateX(-100%);
