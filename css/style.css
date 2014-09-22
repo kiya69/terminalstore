@@ -83,6 +83,7 @@ screenshot {
   float: left;
   display: inline;
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  transform: translateZ(0);
 }
 .panel.closed {
   transform: translateX(-100%);
@@ -117,14 +118,6 @@ loading {
   opacity: 0;
   transition: opacity 0.75s ease-in-out;
 }
-menu {
-  display: inline-block;
-  position: absolute;
-  left: 50%;
-  margin: 5px;
-  margin-top: 20px;
-  top: 3%;
-}
 unitInfo {
   position: absolute;
   padding: 1em 1em 1em 1em;
@@ -133,6 +126,7 @@ unitInfo {
   background: rgba(255,255,255,0.5);
   overflow: auto;
   white-space: nowrap;
+  opacity: 1;
   transition: opacity 0.25s ease-in-out;
 }
 #nprogress {

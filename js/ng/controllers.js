@@ -5,52 +5,45 @@ app.controller('controller', function($scope, three) {
     canvasId: 'main'
   };
   three.init(params);
-  NProgress.start();
 
+  NProgress.start();
+  var pct;
   radio('progress').subscribe(function(url, size) {
     config.progress.current += size;
-    var pct = config.progress.current / config.progress.total;
+    pct = config.progress.current / config.progress.total;
     NProgress.set(pct);
+    console.log(pct);
     if (pct >= 1) {
-      NProgress.done();
-      var loading = document.getElementsByTagName('loading')[0];
-      loading.id = 'loading-close';
 
-      // This is straight up ghetto
-      setTimeout(function() {
-        $('loading').remove();
-      }, 500);
+      Tabletop.init({ // move it here to ensure users won't see anything that's not loaded
+        key: config.cards.key,
+        callback: loadCardsToScope,
+        simpleSheet: true
+      });
     }
   });
 
   radio('progress.total').subscribe(function(size) {
-    config.progress.total = size;
+    config.progress.total = size; //fake load for google spreadsheet
   });
 
   three.load(config.baseUrl + config.model.url);
-  Tabletop.init({
-    key: config.cards.key,
-    callback: loadCardsToScope,
-    simpleSheet: true
-  });
-  // three.loadCards(config.baseUrl + config.cards.url + config.cards.json, function(x) {
-  //   $scope.$apply(function() {
-  //     $scope.data = x;
-  //     config.cards.data = x;
-  //   });
-  // }); //the original way
+
+  function hideLoading() {
+    NProgress.done();
+    var loading = document.getElementsByTagName('loading')[0];
+    loading.id = 'loading-close';
+    setTimeout(function() {
+      $('loading').remove();
+    }, 500);
+  }
 
   function loadCardsToScope(data) {
-    // data comes through as a simple array since simpleSheet is turned on
-
-    // $scope.$apply(function() {
-    //   $scope.data = three.loadCards(data);
-    // });
 
     config.cards.data = three.loadCards(data); //$scope.data;
     loadGroups();
     three.showInfo();
-
+    hideLoading(); //move it here so user won't see an empty column (if internet is slow) while loading data from google spreadsheet
   }
 
   function loadGroups() {
@@ -81,11 +74,13 @@ app.controller('controller', function($scope, three) {
   $scope.onCanvasMouseUp = function() {
     if (Date.now() - clickTime > 150) return;
     var cardName = three.onMouseUp();
-    for (var i in $scope.data)
-      if ($scope.data[i].name == cardName)
-        $scope.data[i].selected = !$scope.data[i].selected;
-      // three.addHashToUrl(card);
-
+    for (var i in $scope.groups) {
+      for (var j in $scope.groups[i].cards) {
+        if ($scope.groups[i].cards[j].name == cardName)
+          $scope.groups[i].cards[j].selected = !$scope.groups[i].cards[j].selected;
+        // three.addHashToUrl(card);
+      }
+    }
   };
   $scope.filterGroups = function(group, card) {
     if (card.indexOf(group) > -1)

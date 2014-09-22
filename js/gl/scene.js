@@ -26,14 +26,11 @@ function onMouseUp() {
     this.addCardToUrl(intersects[0].object.name);
     var object = this.scene.getObjectByName(intersects[0].object.name);
     justClicked = object;
-    // scope.data
-    // for (each in scope.data)
-    //   if (scope.data[each].name == intersects[0].object.name) scope.data[each].selected = !scope.data[each].selected
     return intersects[0].object.name
   }
 }
 
-function showInfo() {
+function showInfo(callback) {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
@@ -53,6 +50,7 @@ function showInfo() {
   var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
   infoDiv.innerHTML = html + totalHTML;
   if (html == "") infoDiv.style.visibility = "hidden";
+  if (callback) callback();
 }
 
 function getIntersects(camera, mouse, children) {

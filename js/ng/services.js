@@ -56,8 +56,6 @@ app.factory('three', function($http, $log, $rootScope) {
     $.getJSON(url, function(groups) {
       config.groups = groups;
       callback(groups);
-      // return groups;
-      // });
     });
   }
 
@@ -103,7 +101,6 @@ app.factory('three', function($http, $log, $rootScope) {
   // }
   function loadCards(data) {
     var loader = new THREE.OBJLoader();
-    // $.getJSON(url, function(data) {
     config.cards.info = data;
     var cards = window.location.hash.substring(1).split(';');
 
@@ -138,7 +135,6 @@ app.factory('three', function($http, $log, $rootScope) {
         "selected": selected
       };
     });
-    // });
   }
 
   function screenshot(filename) {
@@ -146,13 +142,11 @@ app.factory('three', function($http, $log, $rootScope) {
   }
 
   function onCardClick(card) {
-    // var object = demo.scene.getObjectByName(url);
-    // object.visible = !object.visible;
     demo.addCardToUrl(card.name);
   }
 
-  function showInfo() {
-    demo.showInfo();
+  function showInfo(callback) {
+    demo.showInfo(callback);
   }
 
   function onMouseUp() {
