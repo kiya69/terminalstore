@@ -5,7 +5,6 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 
 # TODO
 - Update model
-- Add powered by floored
 - Testing
 - No WebGL
 
@@ -37,6 +36,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Style loading screen
 - Help text copy
 - Admin Panel
+- Add powered by floored
 
 # Model TODO
 - Create panel geometry as separate OBJs
