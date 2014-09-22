@@ -43,20 +43,32 @@ app.controller('controller', function($scope, three) {
   function loadCardsToScope(data) {
     // data comes through as a simple array since simpleSheet is turned on
 
-    $scope.$apply(function() {
-      $scope.data = three.loadCards(data);
-    });
+    // $scope.$apply(function() {
+    //   $scope.data = three.loadCards(data);
+    // });
 
-    config.cards.data = $scope.data;
+    config.cards.data = three.loadCards(data); //$scope.data;
+    loadGroups();
     three.showInfo();
-  }
-  three.loadGroups(config.baseUrl + config.groups.url + config.groups.json, function(groups) {
-    $scope.$apply(function() {
-      $scope.groups = groups;
-      config.groups = groups;
-    });
 
-  });
+  }
+
+  function loadGroups() {
+    three.loadGroups(config.baseUrl + config.groups.url + config.groups.json, function(groups) {
+      for (var group in groups) {
+        groups[group].cards = [];
+        for (var card in config.cards.data) {
+          if (config.cards.data[card].name.indexOf(groups[group].short_name) > -1) {
+            groups[group].cards.push(config.cards.data[card]);
+          }
+        }
+      }
+      $scope.$apply(function() {
+        $scope.groups = groups;
+      });
+
+    });
+  }
   $scope.onCardClick = function(card, fromText) {
     three.onCardClick(card);
     if (fromText) card.selected = !card.selected;
@@ -83,10 +95,10 @@ app.controller('controller', function($scope, three) {
   $scope.showSign = function(showCard) {
     if (showCard) return '- ';
     else return '+ ';
+
   };
 
 });
-
 // tttApp.controller('TTTController', function ($scope, ThreeEnv) {
 
 //   $scope.dims = 4;

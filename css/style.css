@@ -81,6 +81,8 @@ screenshot {
   overflow: auto;
   color: #fff;
   float: left;
+  display: inline;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
 }
 .panel.closed {
   transform: translateX(-100%);
@@ -131,7 +133,7 @@ unitInfo {
   background: rgba(255,255,255,0.5);
   overflow: auto;
   white-space: nowrap;
-  transition: transform 0.25s ease;
+  transition: opacity 0.25s ease-in-out;
 }
 #nprogress {
   pointer-events: none;

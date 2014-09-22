@@ -44,11 +44,11 @@ app.directive('screenshot', function(three) {
   };
 });
 
-app.directive('panel', function(three) {
-  return {
-    restrict: 'E',
-    link: function(scope, element) {
+// app.directive('panel', function(three) {
+//   return {
+//     restrict: 'E',
+//     link: function(scope, element) {
 
-    }
-  };
-});
+//     }
+//   };
+// });

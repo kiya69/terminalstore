@@ -83,18 +83,19 @@ screenshot
   overflow auto
   color white
   float left
+  display inline
+  font-family "Helvetica Neue", "Helvetica", sans-serif
   &.closed
     transform translateX(-100%)
 
   ul
     padding 0
-
   li
     white-space nowrap
     padding 0 0 0 1em
     list-style none
     width 100%
-
+    
 .red
   color #bbb !important
 
@@ -134,4 +135,4 @@ unitInfo
   background rgba(255,255,255,0.5)
   overflow auto
   white-space nowrap
-  transition transform 0.25s ease
+  transition  opacity .25s ease-in-out;
