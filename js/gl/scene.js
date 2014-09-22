@@ -30,7 +30,7 @@ function onMouseUp() {
   }
 }
 
-function showInfo(callback) {
+function showInfo() {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
@@ -50,7 +50,6 @@ function showInfo(callback) {
   var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
   infoDiv.innerHTML = html + totalHTML;
   if (html == "") infoDiv.style.visibility = "hidden";
-  if (callback) callback();
 }
 
 function getIntersects(camera, mouse, children) {

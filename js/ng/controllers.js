@@ -24,7 +24,7 @@ app.controller('controller', function($scope, three) {
   });
 
   radio('progress.total').subscribe(function(size) {
-    config.progress.total = size; //fake load for google spreadsheet
+    config.progress.total = size;
   });
 
   three.load(config.baseUrl + config.model.url);
@@ -40,7 +40,7 @@ app.controller('controller', function($scope, three) {
 
   function loadCardsToScope(data) {
 
-    config.cards.data = three.loadCards(data); //$scope.data;
+    config.cards.data = three.loadCards(data);
     loadGroups();
     three.showInfo();
     hideLoading(); //move it here so user won't see an empty column (if internet is slow) while loading data from google spreadsheet
