@@ -5,21 +5,23 @@ app.controller('controller', function($scope, three) {
     canvasId: 'main'
   };
   three.init(params);
-
+  NProgress.configure({
+    trickle: false
+  });
+  Tabletop.init({
+    key: config.cards.key,
+    callback: loadCardsToScope,
+    simpleSheet: true
+  });
   NProgress.start();
+
   var pct;
   radio('progress').subscribe(function(url, size) {
     config.progress.current += size;
     pct = config.progress.current / config.progress.total;
-    NProgress.inc(pct);
-    console.log(pct);
-    if (pct >= 1) {
-      Tabletop.init({ // move it here to ensure users won't see anything that's not loaded
-        key: config.cards.key,
-        callback: loadCardsToScope,
-        simpleSheet: true
-      });
-    }
+    if (pct < 1) NProgress.set(pct);
+    else hideLoading();
+
   });
 
   radio('progress.total').subscribe(function(size) {
@@ -29,21 +31,20 @@ app.controller('controller', function($scope, three) {
   three.load(config.baseUrl + config.model.url);
 
   function hideLoading() {
-    NProgress.done();
     var loading = document.getElementsByTagName('loading')[0];
-    loading.id = 'loading-close';
-
-    setTimeout(function() {
-      $('loading').remove();
-    }, 500);
+    if (loading && !loading.id) {
+      NProgress.done();
+      loading.id = 'loading-close';
+      setTimeout(function() {
+        $('loading').remove();
+      }, 700);
+    }
   }
 
   function loadCardsToScope(data) {
-
     config.cards.data = three.loadCards(data);
     loadGroups();
     three.showInfo();
-    hideLoading(); //move it here so user won't see an empty column (if internet is slow) while loading data from google spreadsheet
   }
 
   function loadGroups() {
@@ -59,7 +60,6 @@ app.controller('controller', function($scope, three) {
       $scope.$apply(function() {
         $scope.groups = groups;
       });
-
     });
   }
   $scope.onCardClick = function(card, fromText) {
