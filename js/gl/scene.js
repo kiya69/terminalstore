@@ -48,7 +48,7 @@ function showInfo() {
     }
   }
 
-  if (total > 0) {
+  if (html != "") {
     var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
     infoDiv.innerHTML = html + totalHTML;
   } else {
