@@ -11,10 +11,9 @@ app.controller('controller', function($scope, three) {
   radio('progress').subscribe(function(url, size) {
     config.progress.current += size;
     pct = config.progress.current / config.progress.total;
-    NProgress.set(pct);
+    NProgress.inc(pct);
     console.log(pct);
     if (pct >= 1) {
-
       Tabletop.init({ // move it here to ensure users won't see anything that's not loaded
         key: config.cards.key,
         callback: loadCardsToScope,
@@ -33,6 +32,7 @@ app.controller('controller', function($scope, three) {
     NProgress.done();
     var loading = document.getElementsByTagName('loading')[0];
     loading.id = 'loading-close';
+
     setTimeout(function() {
       $('loading').remove();
     }, 500);

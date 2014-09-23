@@ -95,7 +95,6 @@ Demo.Scene.prototype = {
     var params = {
       context: this
     };
-
     this.scene = new THREE.Scene();
     this.projector = new THREE.Projector();
     this.renderer = new THREE.WebGLRenderer({
