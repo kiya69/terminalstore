@@ -34,6 +34,7 @@ function showInfo() {
   var cards = window.location.hash.substring(1).split(';');
   var infoDiv = document.getElementsByTagName('unitInfo')[0];
   infoDiv.style.visibility = "visible";
+  infoDiv.className = "";
   var total = 0;
   var html = "";
   for (var i = 1, pickedCardsLen = cards.length; i < pickedCardsLen; i++) {
@@ -45,11 +46,18 @@ function showInfo() {
         html += "Unit: " + cards[i] + "</br>Size: " + parseInt(card.size).formatComma() + "</br>Availability: " + card.availability + "</br></br>";
       }
     }
-
   }
-  var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
-  infoDiv.innerHTML = html + totalHTML;
-  if (html == "") infoDiv.style.visibility = "hidden";
+
+  if (total > 0) {
+    var totalHTML = "Total: " + parseInt(total).formatComma() + " sf </br></br></br>";
+    infoDiv.innerHTML = html + totalHTML;
+  } else {
+    infoDiv.className = "closed";
+    setTimeout(function() { //wait for the effect finish
+      infoDiv.innerHTML = "";
+      infoDiv.style.visibility = "hidden";
+    }, 300)
+  }
 }
 
 function getIntersects(camera, mouse, children) {
