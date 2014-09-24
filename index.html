@@ -24,6 +24,7 @@
     <script src='js/utils/uriToBlob.js'></script>
     <script src='js/utils/format.js'></script>
     <script src='js/utils/tabletop.js'></script>
+    <script src='js/utils/hasWebGL.js'></script>
 
     <!-- Angular components -->
     <script src='js/ng/app.js'></script>
@@ -58,6 +59,9 @@
             Click and drag to look. Scroll to zoom. <br />To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
         </p>
     </loading>
+    <fallback><p class="instructions">
+            To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
+        </p></fallback>
     <h2 class="attribution">Powered by <span>Floored</span></h2>
   </body>
 </html>
