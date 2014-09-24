@@ -4,65 +4,60 @@ app.controller('controller', function($scope, three) {
   var params = {
     canvasId: 'main'
   };
-  if (hasWebGL()) {
-    three.init(params);
-    NProgress.configure({
-      trickle: false
-    });
-    Tabletop.init({
-      key: config.cards.key,
-      callback: loadCardsToScope,
-      simpleSheet: true
-    });
-    NProgress.start();
-    var pct;
-    radio('progress').subscribe(function(url, size) {
-      config.progress.current += size;
-      pct = config.progress.current / config.progress.total;
-      if (pct < 1) NProgress.set(pct);
-      else hideLoading();
+  three.init(params);
+  NProgress.configure({
+    trickle: false
+  });
+  Tabletop.init({
+    key: config.cards.key,
+    callback: loadCardsToScope,
+    simpleSheet: true
+  });
+  NProgress.start();
+  var pct;
+  radio('progress').subscribe(function(url, size) {
+    config.progress.current += size;
+    pct = config.progress.current / config.progress.total;
+    if (pct < 1) NProgress.set(pct);
+    else hideLoading();
 
-    });
+  });
 
-    radio('progress.total').subscribe(function(size) {
-      config.progress.total = size;
-    });
+  radio('progress.total').subscribe(function(size) {
+    config.progress.total = size;
+  });
 
-    three.load(config.baseUrl + config.model.url);
-    $scope.onCardClick = function(card, fromText) {
-      three.onCardClick(card);
-      if (fromText) card.selected = !card.selected;
+  three.load(config.baseUrl + config.model.url);
+  $scope.onCardClick = function(card, fromText) {
+    three.onCardClick(card);
+    if (fromText) card.selected = !card.selected;
 
-    };
-    var clickTime;
-    $scope.onCanvasMouseDown = function() {
-      clickTime = Date.now();
-    };
-    $scope.onCanvasMouseUp = function() {
-      if (Date.now() - clickTime > 150) return;
-      var cardName = three.onMouseUp();
-      for (var i in $scope.groups) {
-        for (var j in $scope.groups[i].cards) {
-          if ($scope.groups[i].cards[j].name == cardName)
-            $scope.groups[i].cards[j].selected = !$scope.groups[i].cards[j].selected;
-          // three.addHashToUrl(card);
-        }
+  };
+  var clickTime;
+  $scope.onCanvasMouseDown = function() {
+    clickTime = Date.now();
+  };
+  $scope.onCanvasMouseUp = function() {
+    if (Date.now() - clickTime > 150) return;
+    var cardName = three.onMouseUp();
+    for (var i in $scope.groups) {
+      for (var j in $scope.groups[i].cards) {
+        if ($scope.groups[i].cards[j].name == cardName)
+          $scope.groups[i].cards[j].selected = !$scope.groups[i].cards[j].selected;
+        // three.addHashToUrl(card);
       }
-    };
-    $scope.filterGroups = function(group, card) {
-      if (card.indexOf(group) > -1)
-        return card;
-    };
-    $scope.sign = '+ ';
-    $scope.showSign = function(showCard) {
-      if (showCard) return '- ';
-      else return '+ ';
+    }
+  };
+  $scope.filterGroups = function(group, card) {
+    if (card.indexOf(group) > -1)
+      return card;
+  };
+  $scope.sign = '+ ';
+  $scope.showSign = function(showCard) {
+    if (showCard) return '- ';
+    else return '+ ';
 
-    };
-  } else { // if no webgl
-    hideLoading()
-    $('fallback').css('visibility', 'visible');
-  }
+  };
 
   function hideLoading() {
     var loading = document.getElementsByTagName('loading')[0];
