@@ -119,7 +119,7 @@ Demo.Scene.prototype = {
     this.mouse2D = new THREE.Vector3(0, 10000, 0.5);
     var that = this;
     this.renderer.domElement.addEventListener('mousemove', function(e) {
-      onDocumentMouseMove(that.mouse2D, event)
+      onDocumentMouseMove(that.mouse2D, e)
     }, false);
     // this.renderer.domElement.addEventListener('mouseup', function(e) {
     //   onMouseUp(that)
