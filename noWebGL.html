@@ -1,6 +1,10 @@
 <html>
 <head>
     <link rel='stylesheet' type='text/css' href='css/style.css'>
+    <script src='js/utils/hasWebGL.js'></script>
+    <script>
+        if(hasWebGL()) window.location.replace("./"); //redirect back if use come back with this link but using webgl browser
+    </script>
 </head>
 
 <body>
