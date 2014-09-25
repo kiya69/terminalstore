@@ -33,12 +33,14 @@ app.controller('controller', function($scope, three) {
     if (fromText) card.selected = !card.selected;
 
   };
-  var clickTime;
-  $scope.onCanvasMouseDown = function() {
-    clickTime = Date.now();
+  var mousePosition = {};
+  $scope.onCanvasMouseDown = function(event) {
+    mousePosition.x = event.offsetX;
+    mousePosition.y = event.offsetY;
+
   };
-  $scope.onCanvasMouseUp = function() {
-    if (Date.now() - clickTime > 150) return;
+  $scope.onCanvasMouseUp = function(event) {
+    if (mousePosition.x != event.offsetX || mousePosition.y != event.offsetY) return;
     var cardName = three.onMouseUp();
     for (var i in $scope.groups) {
       for (var j in $scope.groups[i].cards) {
