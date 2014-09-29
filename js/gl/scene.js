@@ -43,7 +43,7 @@ function showInfo() {
       if (config.cards.data[j].name == cards[i]) {
         card = config.cards.info[j];
         total += parseInt(card.size);
-        html += "Unit: " + cards[i] + "</br>Size: " + parseInt(card.size).formatComma() + "</br>Availability: " + card.availability + "</br></br>";
+        html += "Unit: " + cards[i] + "</br>Size: " + parseInt(card.size).formatComma() + " sf</br>Availability: " + card.availability + "</br></br>";
       }
     }
   }
@@ -121,9 +121,6 @@ Demo.Scene.prototype = {
     this.renderer.domElement.addEventListener('mousemove', function(e) {
       onDocumentMouseMove(that.mouse2D, e)
     }, false);
-    // this.renderer.domElement.addEventListener('mouseup', function(e) {
-    //   onMouseUp(that)
-    // }, false);
   },
 
   listeners: function() {

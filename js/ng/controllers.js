@@ -50,17 +50,20 @@ app.controller('controller', function($scope, three) {
       }
     }
   };
-  $scope.filterGroups = function(group, card) {
-    if (card.indexOf(group) > -1)
-      return card;
-  };
+  
   $scope.sign = '+ ';
   $scope.showSign = function(showCard) {
     if (showCard) return '- ';
     else return '+ ';
 
   };
-
+  $scope.clearSelections = function(){
+    window.location.hash = '';
+    for(var i in $scope.groups)
+      for(var j in $scope.groups[i].cards)
+        $scope.groups[i].cards[j].selected = false;
+    three.showInfo();
+  };
   function hideLoading() {
     var loading = document.getElementsByTagName('loading')[0];
     if (loading && !loading.id) {

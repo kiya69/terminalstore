@@ -1,5 +1,7 @@
 <html ng-app='app'>
   <head>
+    <title>Terminal Stores Building | Floored</title>
+    <link href="http://labs.floored.com/fallback/assets/img/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
     <link rel='stylesheet' type='text/css' href='css/style.css'>
 
     <script src='js/utils/hasWebGL.js'></script>
@@ -52,6 +54,7 @@
                         </li>
                     </ul>
                 </li>
+                <li><span ng-click='clearSelections()' >Clear Selections</span></li>
             </ul>
         </div>
         <unitInfo></unitInfo>
@@ -61,9 +64,6 @@
             Click and drag to look. Scroll to zoom. <br />To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
         </p>
     </loading>
-    <fallback><p class="instructions">
-            To view this space in 3D, please use a browser that supports <a href="http://get.webgl.org" target="_blank">WebGL</a>.
-        </p></fallback>
     <h2 class="attribution">Powered by <span>Floored</span></h2>
 
   </body>
