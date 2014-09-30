@@ -105,13 +105,26 @@ app.factory('three', function($http, $log, $rootScope) {
     var cards = window.location.hash.substring(1).split(';');
 
     for (var i = 0; i < data.length; i++) {
-      loader.load(config.baseUrl + data[i].url, (function(url) {
+      loader.load(config.baseUrl + data[i].url, (function(url, availability) {
         return function(object) {
           object = object.children[0];
-          object.material.emissive.setRGB(0, 0, 5);
+          switch(availability) {
+            case "Available":
+              object.material.emissive.setRGB(90 / 255, 200 / 255, 121 / 255);
+              break;
+            case "Partial":
+              object.material.emissive.setRGB(81 / 255,81 / 255,  215 / 255);
+              break;
+            case "Leased":
+              object.material.emissive.setRGB(215 / 255, 81 / 255, 81 / 255);
+              break;
+            default:
+              object.material.emissive.setRGB(90 / 255, 150 / 255, 121 / 255);
+              break;
+          }
           object.material.transparent = true;
           object.material.renderDepth = -1.1;
-          object.material.opacity = 0.4;
+          object.material.opacity = 0.6;
 
           object.rotation.x = -Math.PI / 2;
 
@@ -121,8 +134,8 @@ app.factory('three', function($http, $log, $rootScope) {
           object.visible = cards.indexOf(object.name) > -1;
           demo.cards.push(object);
           demo.scene.add(object);
-        }
-      })(data[i].url))
+        };
+      })(data[i].url, data[i].availability))
     }
     return config.cards.info.map(function(curr, i, a) {
       var cards = window.location.hash.substring(1).split(';');
