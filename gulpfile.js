@@ -26,10 +26,10 @@ gulp.task('default', ['connect', 'watch']);
 
 var build_files = [
   'css/**/*.*',
-  'data/**/*.*',
   'img/**/*.*',
   'js/**/*.*',
-  'index.html'
+  'index.html',
+  'noWebGL.html'
 ];
 
 gulp.task('build', function() {

@@ -132,6 +132,7 @@ Demo.Scene.prototype = {
     var uri = this.renderer.domElement.toDataURL('image/jpeg');
     var temp = document.createElement('temp');
     temp.style.backgroundImage = "url('" + uri + "')";
+    temp.style.backgroundSize = window.innerWidth +"px " + window.innerHeight+"px";
     temp.style.position = "absolute";
     temp.style.width = "100%";
     temp.style.height = "100%";
@@ -152,7 +153,8 @@ Demo.Scene.prototype = {
         // var img = uriToBlob(uri);
         // img.type = 'image/jpeg';
         // saveAs(img, filename);
-      }
+      },
+      height: window.innerHeight
     });
   },
   checkPicker: function() {
