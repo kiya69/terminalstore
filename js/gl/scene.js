@@ -113,6 +113,9 @@ Demo.Scene.prototype = {
     this.renderer.domElement.addEventListener('mousemove', function(e) {
       onDocumentMouseMove(that.mouse2D, e)
     }, false);
+    var context = this.container.getContext("experimental-webgl", {
+      preserveDrawingBuffer: true
+    });
   },
 
   listeners: function() {
@@ -128,13 +131,34 @@ Demo.Scene.prototype = {
   },
 
   screenshot: function(filename) {
-    // alert(filename)
     this.renderer.render(this.scene, this.camera);
     var uri = this.renderer.domElement.toDataURL('image/jpeg');
-    console.log(uri)
-    var img = uriToBlob(uri);
-    img.type = 'image/jpeg';
-    saveAs(img, filename);
+    var temp = document.createElement('temp');
+    temp.style.backgroundImage = "url('" + uri + "')";
+    temp.style.position = "absolute";
+    temp.style.width = "100%";
+    temp.style.height = "100%";
+    temp.style.top = 0;
+    temp.style.left = 0;
+    document.body.appendChild(temp);
+    //work around for html2canvas
+    html2canvas(document.body, {
+      onrendered: function(canvas) {
+        // document.body.appendChild(canvas);
+        // var img = uriToBlob(canvas.toDataURL());
+
+        var img = uriToBlob(canvas.toDataURL());
+        // // img.type = 'image/jpeg';
+        saveAs(img, filename);
+        // window.open(img);
+
+        document.body.removeChild(temp);
+        // console.log(uri)
+        // var img = uriToBlob(uri);
+        // img.type = 'image/jpeg';
+        // saveAs(img, filename);
+      }
+    });
   },
   checkPicker: function() {
     var intersects = getIntersects(this.camera, this.mouse2D.clone(), this.scene.children);
