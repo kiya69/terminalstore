@@ -1,22 +1,14 @@
 var Demo = Demo || {};
-var mouse2D = new THREE.Vector3(0, 10000, 0.5);
 var justClicked;
 var onDocumentMouseMove = function(mouse2D, event) {
   event.preventDefault();
-  var canvas = document.getElementsByTagName('canvas')[0];
+  // Convert eventX and eventY to mouse2D
+  var clientX = event.clientX;
+  var clientY = event.clientY;
 
-  var marginX = (window.innerWidth - canvas.width) / 2;
+  mouse2D.x = (clientX / window.innerWidth) * 2 - 1;
+  mouse2D.y = -(clientY / window.innerHeight) * 2 + 1;
 
-  // Make sure mouse movement is in container
-  if (event.clientX > marginX && event.clientX < window.innerWidth - marginX && event.clientY < canvas.height) {
-
-    // Convert eventX and eventY to mouse2D
-    var clientX = event.clientX - marginX;
-    var clientY = event.clientY;
-
-    mouse2D.x = (clientX / canvas.width) * 2 - 1;
-    mouse2D.y = -(clientY / canvas.height) * 2 + 1;
-  }
 }
 
 function onMouseUp() {

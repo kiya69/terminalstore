@@ -47,14 +47,14 @@
     <div id = "infoContainer">
         <div class ='panel'>
             <ul class="groups">
-                <li ng-repeat='group in groups'><span ng-click='sign=showSign(showCard=!showCard)' > {{sign + group.full_name}}</span>
+                <li ng-repeat='group in groups' ><span ng-click='sign=showSign(showCard=!showCard)' > {{sign + group.full_name}}</span>
                     <ul ng-if="showCard" class="cards"> 
-                        <li ng-repeat='card in group.cards' ng-class="{red: hover}"  ng-mouseenter="hover = true" ng-mouseleave="hover = false" class = "card">
+                        <li ng-repeat='card in group.cards'class = "card">
                             <input type="checkbox" ng-click='onCardClick(card, false)' ng-model="card.selected"><span ng-click='onCardClick(card, true)'>{{ card.name }}</span>
                         </li>
                     </ul>
                 </li>
-                <li><span ng-click='clearSelections()' >Clear Selections</span></li>
+                <li><span ng-click='clearSelections()'>Clear Selections</span></li>
             </ul>
         </div>
         <unitInfo></unitInfo>

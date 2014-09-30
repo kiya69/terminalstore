@@ -7,8 +7,8 @@
   /* Currently not supported in Opera but will be soon */
   -o-user-select: none;
   user-select: none; 
-
-  cursor: default;
+/*cursor: default;*/
+  
 
 html
   margin 0
@@ -65,6 +65,8 @@ screenshot
   bottom 1em
   background-size cover
   background-image url("../img/camera.svg")
+  z-index 2
+  cursor pointer
 
 #infoContainer
   position absolute
@@ -94,7 +96,6 @@ screenshot
   transform translateZ(0)
   &.closed
     transform translateX(-100%)
-
   ul
     padding 0
   li
@@ -102,10 +103,9 @@ screenshot
     padding 0 0 0 1em
     list-style none
     width 100%
-    
-.red
-  color #bbb !important
-
+    span:hover 
+      color #bbb 
+      cursor pointer  
 
 loading
   position absolute
@@ -151,7 +151,6 @@ loading
   transition opacity 0.75s ease-in-out
 
 unitInfo
-  position absolute
   padding 1em 1em 1em 1em
   width auto
   height 100%  
@@ -161,6 +160,8 @@ unitInfo
   opacity 1
   transition opacity 0.3s ease-in-out
   color #242424
+  float right
+  transform translateZ(0)
   &.closed
     opacity 0
     transition opacity 0.3s ease-in-out, 
