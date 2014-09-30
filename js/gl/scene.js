@@ -144,11 +144,9 @@ Demo.Scene.prototype = {
     //work around for html2canvas
     html2canvas(document.body, {
       onrendered: function(canvas) {
-        // document.body.appendChild(canvas);
-        // var img = uriToBlob(canvas.toDataURL());
 
         var img = uriToBlob(canvas.toDataURL());
-        // // img.type = 'image/jpeg';
+        img.type = 'image/jpeg';
         saveAs(img, filename);
         // window.open(img);
 
