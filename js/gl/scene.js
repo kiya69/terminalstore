@@ -113,9 +113,6 @@ Demo.Scene.prototype = {
     this.renderer.domElement.addEventListener('mousemove', function(e) {
       onDocumentMouseMove(that.mouse2D, e)
     }, false);
-    var context = this.container.getContext("experimental-webgl", {
-      preserveDrawingBuffer: true
-    });
   },
 
   listeners: function() {
