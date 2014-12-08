@@ -6,7 +6,6 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 # TODO
 - Update model
 - Testing
-- No WebGL
 
 # Done
 - Loading screen
@@ -32,6 +31,7 @@ http://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
 - Square foot data
 - Tally square foot
 - Group by floor
+- No WebGL
 
 - Style loading screen
 - Help text copy
